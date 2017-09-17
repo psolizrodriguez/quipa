@@ -1,29 +1,71 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-    <head>
-    <!--
-        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
-        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
-    -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>quipa</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-    </body>
+<head>
+    <title>Basic App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css" />
+    <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="css/index.css" />
+    
+</head>
+<body>
+    <!-- page1 -->
+    <div data-role="page" id="page1" data-theme="b">
+        <div data-role="header">
+            <h3>Welcome to Quipa!</h3>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <h1>FUTURE GOOD DECISIONS</h1>
+        </div> <!--header-->
+        <div role="main" class="ui-content">
+            <!--FORM START-->
+            <section id="form">
+                <form id="signup" data-ajax="false" action="#page1">
+                    <!--this allows the submit button to work -->
+                    <fieldset>
+                        <legend>Sign Up For Quipa!</legend>
+
+                        <!--NAME-->
+                        <input type="text" id="firstName" placeholder="First Name" />
+                        <input type="text" id="surname" placeholder="Last Name" /><br />
+
+                        <!--EMAIL-->
+                        <input type="email" id="signUpEmail" placeholder="E-mail" />
+                        <!--AGE-->
+                        <p id="personalAttributes">Age:</p>
+                        <input type="number" id="age" required name="age" min="18" max="100"><br />
+
+                        <!--SEX-->
+                        <input type="radio" name="sex" id="male" checked value="M">M
+                        <input type="radio" name="sex" id="female" value="F">F
+                        <br />
+
+                        <!--SUBMIT-->
+                        <input type="submit" value="Submit" id="submitbutton" data-inline="true">
+                    </fieldset>
+                </form>
+            </section><!--END OF FORM-->
+
+            <button id="login" class="mainPagesButtons">Login</button>
+            <p><a href="#page2" data-prefetch="true" data-transition="slidedown">no page 2 yet :(</a></p>
+        </div><!-- /content -->
+        <div data-role="footer">
+            <h5>QUIPA - Main Page</h5>
+        </div><!-- /footer -->
+    </div><!-- /page1 -->
+    <!-- page2 -->
+    <div data-role="page" id="page2" data-dialog="true">
+        <div data-role="header">
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+        </div><!-- /content -->
+        <div data-role="footer">
+        </div><!-- /footer -->
+    </div><!-- /page2 -->
+    <!--SCRIPTS-->
+    <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+    <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="scripts/jquery-3.2.1.js"></script>
+    <script src="scripts/form.js"></script>
+</body>
 </html>
