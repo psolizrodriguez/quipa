@@ -3,9 +3,8 @@
 <head>
     <title>Basic App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css" />
-    <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+   <!-- <link rel="stylesheet" href="css/index.css" /> -->
     
 </head>
 <body>
@@ -36,8 +35,10 @@
                         <input type="number" id="age" required name="age" min="18" max="100"><br />
 
                         <!--SEX-->
-                        <input type="radio" name="sex" id="male" checked value="M">M
-                        <input type="radio" name="sex" id="female" value="F">F
+                        <label for="male" name="sex" id="male" value="male">Male</label>
+                        <input type="radio" name="sex" id="male" checked value="M">
+                        <label for="female" name="sex" id="female" value="female">Female</label>
+                        <input type="radio" name="sex" id="female" value="F">
                         <br />
 
                         <!--SUBMIT-->
@@ -50,22 +51,24 @@
             <p><a href="#page2" data-prefetch="true" data-transition="slidedown">no page 2 yet :(</a></p>
         </div><!-- /content -->
         <div data-role="footer">
-            <h5>QUIPA - Main Page</h5>
+            <h5>&copy QUIPA - Main Page</h5>
         </div><!-- /footer -->
     </div><!-- /page1 -->
+
+
     <!-- page2 -->
     <div data-role="page" id="page2" data-dialog="true">
         <div data-role="header">
         </div><!-- /header -->
         <div role="main" class="ui-content">
+            <h1>PAGE 2</h1>
         </div><!-- /content -->
         <div data-role="footer">
         </div><!-- /footer -->
     </div><!-- /page2 -->
     <!--SCRIPTS-->
-    <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
-    <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="scripts/jquery-3.2.1.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="scripts/form.js"></script>
 </body>
 </html>
