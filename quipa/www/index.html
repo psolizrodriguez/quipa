@@ -18,20 +18,23 @@
         </div> <!--header-->
         <div role="main" class="ui-content">
             <!--FORM START-->
-            <section id="form">
+            <section id="signUpForm">
                 <form id="signup" data-ajax="false" action="#page1">
                     <!--this allows the submit button to work -->
                     <fieldset>
                         <legend>Sign Up For Quipa!</legend>
 
                         <!--NAME-->
-                        <input type="text" id="firstName" placeholder="First Name" />
-                        <input type="text" id="surname" placeholder="Last Name" /><br />
+                        <label for="firstName" name="firstName" id="firstName">First Name:</label>
+                        <input type="text" id="firstName" placeholder="First Name" required/>
+                        <label for="lastName" name="lastName" id="lastName">Surname: </label>
+                        <input type="text" id="surname" placeholder="Last Name" required/><br />
 
                         <!--EMAIL-->
-                        <input type="email" id="signUpEmail" placeholder="E-mail" />
+                        <label for="email" id="signUpEmail">E-mail:</label>
+                        <input type="email" id="signUpEmail" placeholder="E-mail" required/>
                         <!--AGE-->
-                        <p id="personalAttributes">Age:</p>
+                        <label for="age" name="age" id="age">Age: </label> 
                         <input type="number" id="age" required name="age" min="18" max="100"><br />
 
                         <!--SEX-->
@@ -45,10 +48,11 @@
                         <input type="submit" value="Submit" id="submitbutton" data-inline="true">
                     </fieldset>
                 </form>
+          <!--      <script>$("#signUpForm").validate();</script> -->
             </section><!--END OF FORM-->
-
-            <button id="login" class="mainPagesButtons">Login</button>
-            <p><a href="#page2" data-prefetch="true" data-transition="slidedown">no page 2 yet :(</a></p>
+            <h3>Already a member?</h3>
+            <a href="#page3" data-prefetch="true" data-transition="pop"><button id="login" class="mainPagesButtons">Login</button></a>
+            <p><a href="#page2" data-prefetch="true" data-transition="slidedown">About Quipa</a></p>
         </div><!-- /content -->
         <div data-role="footer">
             <h5>&copy QUIPA - Main Page</h5>
@@ -59,13 +63,42 @@
     <!-- page2 -->
     <div data-role="page" id="page2" data-dialog="true">
         <div data-role="header">
+            <h1>About Quipa</h1>
         </div><!-- /header -->
         <div role="main" class="ui-content">
-            <h1>PAGE 2</h1>
+            <p>This will eventually contain information about the app.</p>
         </div><!-- /content -->
         <div data-role="footer">
         </div><!-- /footer -->
     </div><!-- /page2 -->
+
+    <!-- page 3 // LOGIN -->
+    <div data-role="page" id="page3" data-theme="b">
+        <div data-role="header">
+            <h1>Login</h1>
+        </div> <!--header-->
+        <div role="main" class="ui-content">
+            <!--FORM START-->
+            <section id="signUpForm">
+                <form id="signup" data-ajax="false" action="#page1">
+                    <!--this allows the submit button to work -->
+                    <fieldset>
+                        <!--EMAIL-->
+                        <label for="email" id="loginEmail">E-mail:</label>
+                        <input type="email" id="loginEmail" placeholder="E-mail" required />
+                        <!--PASSWORD-->
+                        <label for="loginPass" id="loginPass">Passowrd</label>
+                        <input type="password" id="loginPass" placeholder="Password" required />
+                        <!--SUBMIT-->
+                        <input type="submit" value="Submit" id="submitbutton" data-inline="true">
+                    </fieldset>
+                </form>
+</div> <!--content-->
+        <div data-role="footer">
+            <a href="#page1">Not a member?</a>
+        </div>
+    </div>
+
     <!--SCRIPTS-->
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
