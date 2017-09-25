@@ -1,10 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Basic App</title>
+    <title>QUIPA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-   <!-- <link rel="stylesheet" href="css/index.css" /> -->
     
 </head>
 <body>
@@ -48,14 +47,13 @@
                         <input type="submit" value="Submit" id="submitbutton" data-inline="true">
                     </fieldset>
                 </form>
-          <!--      <script>$("#signUpForm").validate();</script> -->
             </section><!--END OF FORM-->
             <h3>Already a member?</h3>
             <a href="#page3" data-prefetch="true" data-transition="pop"><button id="login" class="mainPagesButtons">Login</button></a>
             <p><a href="#page2" data-prefetch="true" data-transition="slidedown">About Quipa</a></p>
         </div><!-- /content -->
         <div data-role="footer">
-            <h5>&copy QUIPA - Main Page</h5>
+            <h5>&copy QUIPA - Main Page</h5><a href="#profilePage">Testing Use - Profile page</a>
         </div><!-- /footer -->
     </div><!-- /page1 -->
 
@@ -98,10 +96,34 @@
             <a href="#page1">Not a member?</a>
         </div>
     </div>
+    <!-- profilePage -->
+    <div data-role="page" id="profilePage" data-theme="b">
+        <div data-role="header">
+            <h1>Profile</h1>
+        </div> <!--header-->
+        <div role="main" class="ui-content">
+            <p>You haven't uploaded a profile picture yet! Take one now!</p>
+            <input type="button" id="takeProfilePic" data-icon="camera" value="Smile!" />
+            <div id="profilePhoto">
+                <img id="imageView" style="width: 100%;" /></img>
+            </div> <!--profile photo div-->
+            <div data-role="popup" id="photoSelector" style="min-width: 250px;">
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="divider">Choose Photo</li>
+                    <li><a id="cameraPic" href="#">Take Photo with Camera</a></li>
+                    <li><a id="galleryPic" href="#">Get Photo from Gallery</a></li>
+                    </ul>
+                </div> <!--photo selection-->
+            </div> <!--content-->
+            <div data-role="footer">
+                <a href="#page1">Not a member?</a>
+            </div>
+        </div>
 
     <!--SCRIPTS-->
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="scripts/form.js"></script>
+    <script src="scripts/actions.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 </body>
 </html>
