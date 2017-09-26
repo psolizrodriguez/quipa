@@ -48,23 +48,29 @@
                     </fieldset>
                 </form>
             </section><!--END OF FORM-->
-            <h3>Already a member?</h3>
+            <h3 id="alreadyMember">Already a member?</h3>
             <a href="#page3" data-prefetch="true" data-transition="pop"><button id="login" class="mainPagesButtons">Login</button></a>
-            <p><a href="#page2" data-prefetch="true" data-transition="slidedown">About Quipa</a></p>
+            <h5><a href="#page2" data-prefetch="true" data-transition="slidedown">About Quipa</a></h5>
         </div><!-- /content -->
         <div data-role="footer">
-            <h5>&copy QUIPA - Main Page</h5><a href="#camera">Testing Use - Profile page</a>
+            <h5>&copy QUIPA</h5><h3><a href="#camera">Testing Use - Profile page</a></h3>
         </div><!-- /footer -->
     </div><!-- /page1 -->
 
 
     <!-- page2 -->
-    <div data-role="page" id="page2" data-dialog="true">
+    <div data-role="page" id="page2" data-dialog="true" data-theme="b">
         <div data-role="header">
             <h1>About Quipa</h1>
         </div><!-- /header -->
+        <div data-role="navbar" data-iconpos="left">
+            <ul>
+                <li><a class="ui-btn" data-icon="home" data-transition="slide" href="#page1">Quipa Main Page</a></li>
+                <li><a class="ui-btn" data-icon="arrow-l" data-rel="back">back</a></li>
+            </ul>
+        </div><!-- /navbar -->
         <div role="main" class="ui-content">
-            <p>This will eventually contain information about the app.</p>
+            <h4>This will eventually contain information about the app.</h4>
         </div><!-- /content -->
         <div data-role="footer">
         </div><!-- /footer -->
@@ -75,6 +81,13 @@
         <div data-role="header">
             <h1>Login</h1>
         </div> <!--header-->
+        <div data-role="navbar" data-iconpos="left">
+            <ul>
+                <li><a class="ui-btn" data-icon="home" data-transition="slide" href="#page1">Quipa Main Page</a></li>
+                <li><a class="ui-btn" data-icon="grid" data-transition="pop" href="#page2">About Quipa</a></li>
+                <li><a class="ui-btn" data-icon="arrow-l" data-rel="back">back</a></li>
+            </ul>
+        </div><!-- /navbar -->
         <div role="main" class="ui-content">
             <!--FORM START-->
             <section id="signUpForm">
@@ -96,7 +109,7 @@
             <a href="#page1">Not a member?</a>
         </div>
     </div>
-    <!-- camera page -->
+    <!-- camera/profile pic upload page -->
     <div data-role="page" id="camera" data-theme="b">
         <div data-role="header">
             <h3>Upload a Profile Picture</h3>
@@ -104,6 +117,7 @@
         <div data-role="navbar" data-iconpos="left">
             <ul>
                 <li><a class="ui-btn" data-icon="home" data-transition="slide" href="#page1">Quipa Main Page</a></li>
+                <li><a class="ui-btn" data-icon="grid" data-transition="pop" href="#page2">About Quipa</a></li>
                 <li><a class="ui-btn" data-icon="arrow-l" data-rel="back">back</a></li>
             </ul>
         </div><!-- /navbar -->
