@@ -21,20 +21,4 @@ $(document).ready(function () {
         alert("You are " + firstName + " " + lastName + ", " + age + " years old and we can contact you at\n" + email);
 
     });
-
-    $("#takeProfilePic").on("tap", function (e) {
-        e.preventDefault();
-        //show popup options for camera
-        $("#photoSelector").popup("open");
-    })
-    $("#cameraPic").on("tap", function (e) {
-        e.preventDefault();
-        //hide popup options for camera
-        $("#photoSelector").popup("close");
-    })
-    $("#galleryPic").on("tap", function (e) {
-        e.preventDefault();
-        //hide popup options for camera
-        $("#photoSelector").popup("close");
-    });
 });
