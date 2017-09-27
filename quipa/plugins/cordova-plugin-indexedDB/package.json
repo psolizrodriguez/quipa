@@ -1,0 +1,109 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-indexeddb",
+        "scope": null,
+        "escapedName": "cordova-plugin-indexeddb",
+        "name": "cordova-plugin-indexeddb",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\litte\\source\\repos\\quipa\\quipa"
+    ],
+    [
+      {
+        "raw": "cordova-plugin-indexeddb",
+        "scope": null,
+        "escapedName": "cordova-plugin-indexeddb",
+        "name": null,
+        "rawSpec": "cordova-plugin-indexeddb",
+        "spec": "C:\\Users\\litte\\source\\repos\\quipa\\quipa\\node_modules\\cordova-plugin-indexeddb",
+        "type": "directory"
+      },
+      "C:\\Users\\litte\\source\\repos\\quipa\\quipa\\node_modules"
+    ]
+  ],
+  "_from": "cordova-plugin-indexeddb@latest",
+  "_id": "cordova-plugin-indexeddb@0.1.2",
+  "_inCache": true,
+  "_location": "/cordova-plugin-indexeddb",
+  "_nodeVersion": "0.12.0",
+  "_npmUser": {
+    "name": "msopentech",
+    "email": "msopentech@microsoft.com"
+  },
+  "_npmVersion": "2.5.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-indexeddb",
+    "scope": null,
+    "escapedName": "cordova-plugin-indexeddb",
+    "name": null,
+    "rawSpec": "cordova-plugin-indexeddb",
+    "spec": "C:\\Users\\litte\\source\\repos\\quipa\\quipa\\node_modules\\cordova-plugin-indexeddb",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-indexeddb/-/cordova-plugin-indexeddb-0.1.2.tgz",
+  "_shasum": "64e603544555e065a36af79aa8b829f339bf5995",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-indexeddb",
+  "_where": "C:\\Users\\litte\\source\\repos\\quipa\\quipa\\node_modules",
+  "author": {
+    "name": "Microsoft Open Technologies Inc"
+  },
+  "bugs": {
+    "url": "https://github.com/MSOpenTech/cordova-plugin-indexedDB/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-indexeddb",
+    "platforms": [
+      "android",
+      "ios",
+      "windows8",
+      "windows",
+      "browser"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova IndexedDB Plugin",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "64e603544555e065a36af79aa8b829f339bf5995",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-indexeddb/-/cordova-plugin-indexeddb-0.1.2.tgz"
+  },
+  "gitHead": "1d14e7e3bd266cddb3eabcaebc0e67b091487f25",
+  "homepage": "https://github.com/MSOpenTech/cordova-plugin-indexedDB",
+  "keywords": [
+    "cordova",
+    "indexeddb",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows8",
+    "cordova-windows",
+    "cordova-browser"
+  ],
+  "license": "Apache 2.0",
+  "maintainers": [
+    {
+      "name": "msopentech",
+      "email": "msopentech@microsoft.com"
+    }
+  ],
+  "name": "cordova-plugin-indexeddb",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MSOpenTech/cordova-plugin-indexedDB.git"
+  },
+  "scripts": {},
+  "version": "0.1.2"
+}

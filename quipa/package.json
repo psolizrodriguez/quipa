@@ -7,8 +7,10 @@
         "cordova-ios": "4.2.0",
         "cordova-plugin-camera": "^2.4.1",
         "cordova-plugin-compat": "~1.1.0",
+        "cordova-plugin-indexeddb": "file:node_modules\\cordova-plugin-indexeddb",
         "cordova-plugin-whitelist": "1.2.2",
-        "cordova-windows": "4.4.2"
+        "cordova-windows": "4.4.2",
+        "indexeddb": "0.0.0"
     },
     "cordova": {
         "platforms": [
@@ -19,7 +21,8 @@
         "plugins": {
             "cordova-plugin-whitelist": {},
             "cordova-plugin-camera": {},
-            "cordova-plugin-compat": {}
+            "cordova-plugin-compat": {},
+            "cordova-plugin-indexedDB": {}
         }
     }
 }
