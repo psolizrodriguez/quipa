@@ -23,24 +23,23 @@
                     <fieldset>
                         <legend>Sign Up For Quipa!</legend>
 
+                        <input type="button" id="takePhoto" data-icon="camera" value="Take Profile Photo" />
+                        <div id="photo">
+                            <img id="imageView" style="width: 100%;">Profile Picture</img>
+                        </div><!-- /photo -->
+                        <div data-role="popup" id="photoSelector" style="min-width: 250px;">
+                            <ul data-role="listview" data-inset="true">
+                                <li data-role="divider">Choose Photo</li>
+                                <li><a id="cameraPhoto" href="#">Take Photo with Camera</a></li>
+                                <li><a id="galleryPhoto" href="#">Get Photo from Gallery</a></li>
+                            </ul>
+                        </div>
+
                         <!--NAME-->
                         <label for="firstName" name="firstName" id="firstName">First Name:</label>
                         <input type="text" id="firstName" placeholder="First Name" required/>
                         <label for="lastName" name="lastName" id="lastName">Surname: </label>
                         <input type="text" id="surname" placeholder="Last Name" required/><br />
-
-                        <!--EMAIL-->
-                        <label for="email" id="signUpEmail">E-mail:</label>
-                        <input type="email" id="signUpEmail" placeholder="E-mail" required/>
-                        <!--AGE-->
-                        <label for="age" name="age" id="age">Age: </label> 
-                        <input type="number" id="age" required name="age" min="18" max="100"><br />
-
-                        <!--SEX-->
-                        <label for="male" name="sex" id="male" value="male">Male</label>
-                        <input type="radio" name="sex" id="male" checked value="M">
-                        <label for="female" name="sex" id="female" value="female">Female</label>
-                        <input type="radio" name="sex" id="female" value="F">
                         <br />
 
                         <!--SUBMIT-->
@@ -51,9 +50,10 @@
             <h3 id="alreadyMember">Already a member?</h3>
             <a href="#page3" data-prefetch="true" data-transition="pop"><button id="login" class="mainPagesButtons">Login</button></a>
             <h5><a href="#page2" data-prefetch="true" data-transition="slidedown">About Quipa</a></h5>
+            <h5><a href="#profilePage2" data-prefetch="true" data-transition="flip">Testing purposes: Geolocations</a></h5>
         </div><!-- /content -->
         <div data-role="footer">
-            <h5>&copy QUIPA</h5><h3><a href="#camera">Testing Use - Profile page</a></h3>
+            <h5>&copy QUIPA</h5>
         </div><!-- /footer -->
     </div><!-- /page1 -->
 
@@ -110,9 +110,9 @@
         </div>
     </div>
     <!-- camera/profile pic upload page -->
-    <div data-role="page" id="camera" data-theme="b">
+    <div data-role="page" id="profilePage2" data-theme="b">
         <div data-role="header">
-            <h3>Upload a Profile Picture</h3>
+            <h3>Finish Making Your Profile</h3>
         </div><!-- /header -->
         <div data-role="navbar" data-iconpos="left">
             <ul>
@@ -122,17 +122,11 @@
             </ul>
         </div><!-- /navbar -->
         <div data-role="content">
-            <input type="button" id="takePhoto" data-icon="camera" value="Take Profile Photo" />
-            <div id="photo">
-                <img id="imageView" style="width: 100%;">Profile Picture</img>
-            </div><!-- /photo -->
-            <div data-role="popup" id="photoSelector" style="min-width: 250px;">
-                <ul data-role="listview" data-inset="true">
-                    <li data-role="divider">Choose Photo</li>
-                    <li><a id="cameraPhoto" href="#">Take Photo with Camera</a></li>
-                    <li><a id="galleryPhoto" href="#">Get Photo from Gallery</a></li>
-                </ul>
-            </div><!-- /photoSelector -->
+            <p>Let prospects know your location: </p>
+            <input type="button" id="getLocation" data-icon="search" value="Allow Quipa to Locate You" />
+            <div id="gps_test">
+
+            </div><!--GPS test-->
         </div><!-- /content -->
     </div><!-- /camera page -->
 

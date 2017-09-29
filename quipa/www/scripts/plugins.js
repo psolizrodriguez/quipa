@@ -6,14 +6,14 @@
         //loader function after deviceready event returns
         function onDeviceReady() {
 
+            //CAMERA
             function onSuccess(imageData) {
                 var image = document.getElementById('imageView');
                 image.src = imageData;
-                console.log(imageData);
             }
 
             function onFail(message) {
-                alert('Failed because: ' + message);
+                alert('Could not complete: ' + message);
             }
 
             function getPhoto(camera) {
@@ -33,8 +33,6 @@
                     });
                 }
             }
-
-
 
             $("#takePhoto").on("tap", function (e) {
                 e.preventDefault();
@@ -56,6 +54,27 @@
                 $("#photoSelector").popup("close");
                 getPhoto(false);
             })
+
+
+            //GEOLOCATION
+            $("#getLocation").on("tap", function (e) {
+                e.preventDefault();
+                getLocation();
+            })
+            function getLocation() {
+                navigator.geolocation.getCurrentPosition(onSuccess,
+                    onFail, {
+                        timeout: 15000,
+                        enableHighAccuracy: true
+                    });
+                function onSuccess(location) {
+                    var myLatitude = location.coords.latitude;
+                    var myLongitude = location.coords.longitude;
+                    $("#gps_test").append("<p>my latitude = " + myLatitude + "</p><p>my longitude = " + myLongitude + "</p>");
+                }                function onFail(error) {
+                    $("#gps_test").append("location error code = " + error.code + " message = " + error.message);
+                }
+            }            
 
         }
 
