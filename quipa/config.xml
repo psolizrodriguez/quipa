@@ -95,4 +95,9 @@
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
     <plugin name="cordova-plugin-indexedDB" spec="~0.1.2" />
     <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
+    <plugin name="com.googlemaps.ios" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk" />
+    <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyAMsQNZwEkwAxN5rRy6QqEOwZ29lDPG4NA" />
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyASk0uLn0oKU0ieI4ctfhkHIf9avURnlC4" />
+    </plugin>
 </widget>
