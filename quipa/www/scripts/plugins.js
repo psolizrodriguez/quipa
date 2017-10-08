@@ -57,41 +57,54 @@
             var address = undefined;
             function updateMap(address) {
 
-                var OnSuccess = function (position) {
+                var OnSuccess = function (location) {
                     var mapDiv = document.getElementById("map_canvas");
                     //set size
-                    alert("Inside success call");
                     mapDiv.width = window.innerWidth - 30;
                     mapDiv.height = window.innerHeight - 20;
                     //connect plugin to canvas div
                     var map = plugin.google.maps.Map.getMap(mapDiv);
-                    plugin.google.maps.Map.setDiv(mapDiv);
+                    alert("line 67 -- type of map " + typeof map);
+                    map.setDiv(mapDiv);
+                    alert("line 68");
                     //add event listener
-                    map.addEventListener(plugin.google.maps.Map.event.MAP_READY, onMapReady, onError);
-
+                    map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady, onError);
+                    alert("line 72");
                     function onMapReady() {
                         //get current lat/long
                         var userLocation = new plugin.google.maps.LatLng(location.coords.latitude, location.coords.longitude);
-
+                        alert("Inside onMapReady");
                         //Set map options
-                        map.setOptins({
-                            'mapType': plugin.google.maps.MapTypeId.ROADMAP,
+                        map.setOptions({
+                            'backgroundColor': 'white',
+                            'mapType': plugin.google.maps.MapTypeId.HYBRID,
                             'controls': {
-                                'zoom': false
+                                'compass': true,
+                                'myLocationButton': true,
+                                'indoorPicker': true,
+                                'zoom': true // Only for Android
                             },
                             'gestures': {
                                 'scroll': true,
                                 'tilt': true,
+                                'rotate': true,
                                 'zoom': true
                             },
                             'camera': {
-                                'latlng': userLocation,
+                                'latLng': userLocation,
                                 'tilt': 30,
                                 'zoom': 15,
                                 'bearing': 50
+                            },
+                            'preferences': {
+                                'zoom': {
+                                    'minZoom': 15,
+                                    'maxZoom': 18
+                                },
+                                'building': false
                             }
                         });
-
+                        alert("Set options didn't break anything");
                         //add marker for userLocation
                         map.addMarker({
                             'position': userLocation,
@@ -100,6 +113,7 @@
                             function (marker) {
                                 marker.showInfoWindow();
                             });
+                        alert("Reached end of onMapReady");
                     }
                 };
 
