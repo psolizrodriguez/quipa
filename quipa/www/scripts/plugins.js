@@ -71,9 +71,13 @@
                     map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady, onError);
                     alert("line 72");
                     function onMapReady() {
-                        //get current lat/long
-                        var userLocation = new plugin.google.maps.LatLng(location.coords.latitude, location.coords.longitude);
                         alert("Inside onMapReady");
+                        //get current lat/long
+                        var lat = location.coords.latitude;
+                        var long = location.coords.longitude;
+                        alert("Lat: " + lat + " Long: " + long);
+                        var userLocation = new plugin.google.maps.LatLng(lat, long);
+                        alert("userLocation is set");
                         //Set map options
                         map.setOptions({
                             'backgroundColor': 'white',
