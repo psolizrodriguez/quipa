@@ -54,27 +54,74 @@
                 $("#photoSelector").popup("close");
                 getPhoto(false);
             })
+            var address = undefined;
+            function updateMap(address) {
+
+                var OnSuccess = function (position) {
+                    var mapDiv = document.getElementById("map_canvas");
+                    //set size
+                    alert("Inside success call");
+                    mapDiv.width = window.innerWidth - 30;
+                    mapDiv.height = window.innerHeight - 20;
+                    //connect plugin to canvas div
+                    var map = plugin.google.maps.Map.getMap(mapDiv);
+                    plugin.google.maps.Map.setDiv(mapDiv);
+                    //add event listener
+                    map.addEventListener(plugin.google.maps.Map.event.MAP_READY, onMapReady, onError);
+
+                    function onMapReady() {
+                        //get current lat/long
+                        var userLocation = new plugin.google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+
+                        //Set map options
+                        map.setOptins({
+                            'mapType': plugin.google.maps.MapTypeId.ROADMAP,
+                            'controls': {
+                                'zoom': false
+                            },
+                            'gestures': {
+                                'scroll': true,
+                                'tilt': true,
+                                'zoom': true
+                            },
+                            'camera': {
+                                'latlng': userLocation,
+                                'tilt': 30,
+                                'zoom': 15,
+                                'bearing': 50
+                            }
+                        });
+
+                        //add marker for userLocation
+                        map.addMarker({
+                            'position': userLocation,
+                            'title': "You are here."
+                        },
+                            function (marker) {
+                                marker.showInfoWindow();
+                            });
+                    }
+                };
+
+                var onError = function (error) {
+                    alert("Something has gone wrong. Error: " + error.code + " " + error.message);
+                };
+                navigator.geolocation.getCurrentPosition(OnSuccess, onError, { enableHighAccuracy: true})
+            }
 
 
-            //GEOLOCATION
-            $("#getLocation").on("tap", function (e) {
-                e.preventDefault();
-                getLocation();
-            })
-            function getLocation() {
-                navigator.geolocation.getCurrentPosition(onSuccess,
-                    onFail, {
-                        timeout: 15000,
-                        enableHighAccuracy: true
-                    });
-                function onSuccess(location) {
-                    var myLatitude = location.coords.latitude;
-                    var myLongitude = location.coords.longitude;
-                    $("#gps_test").append("<p>my latitude = " + myLatitude + "</p><p>my longitude = " + myLongitude + "</p>");
-                }                function onFail(error) {
-                    $("#gps_test").append("location error code = " + error.code + " message = " + error.message);
-                }
-            }            
+            //map failed to load
+            var onError = function (error) {
+                alert("Something has gone wrong. Error: " + error.code + " " + error.message);
+            };
+
+            var locationButton = document.getElementById("mapButton");
+            mapButton.addEventListener("click", onMapping, false);
+
+            function onMapping() {
+                alert("Button works!");
+                updateMap();
+            }
 
         }
 

@@ -13,7 +13,8 @@
         "cordova-plugin-indexeddb": "file:node_modules\\cordova-plugin-indexeddb",
         "cordova-plugin-whitelist": "1.2.2",
         "cordova-windows": "4.4.2",
-        "indexeddb": "0.0.0"
+        "indexeddb": "0.0.0",
+        "com.googlemaps.ios": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk"
     },
     "cordova": {
         "platforms": [
