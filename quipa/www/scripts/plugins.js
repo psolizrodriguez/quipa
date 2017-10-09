@@ -13,7 +13,7 @@
             }
 
             function onFail(message) {
-                alert('Could not complete: ' + message);
+                console.log('Could not complete: ' + message);
             }
 
             function getPhoto(camera) {
@@ -64,20 +64,20 @@
                     mapDiv.height = window.innerHeight - 20;
                     //connect plugin to canvas div
                     var map = plugin.google.maps.Map.getMap(mapDiv);
-                    alert("line 67 -- type of map " + typeof map);
+                    console.log("line 67 -- type of map " + typeof map);
                     map.setDiv(mapDiv);
-                    alert("line 68");
+                    console.log("line 68");
                     //add event listener
                     map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady, onError);
-                    alert("line 72");
+                    console.log("line 72");
                     function onMapReady() {
-                        alert("Inside onMapReady");
+                        console.log("Inside onMapReady");
                         //get current lat/long
                         var lat = location.coords.latitude;
                         var long = location.coords.longitude;
-                        alert("Lat: " + lat + " Long: " + long);
+                        console.log("Lat: " + lat + " Long: " + long);
                         var userLocation = new plugin.google.maps.LatLng(lat, long);
-                        alert("userLocation is set");
+                        console.log("userLocation is set");
                         //Set map options
                         map.setOptions({
                             'backgroundColor': 'white',
@@ -108,7 +108,7 @@
                                 'building': false
                             }
                         });
-                        alert("Set options didn't break anything");
+                        console.log("Set options didn't break anything");
                         //add marker for userLocation
                         map.addMarker({
                             'position': userLocation,
@@ -117,12 +117,12 @@
                             function (marker) {
                                 marker.showInfoWindow();
                             });
-                        alert("Reached end of onMapReady");
+                        console.log("Reached end of onMapReady");
                     }
                 };
 
                 var onError = function (error) {
-                    alert("Something has gone wrong. Error: " + error.code + " " + error.message);
+                    console.log("Something has gone wrong. Error: " + error.code + " " + error.message);
                 };
                 navigator.geolocation.getCurrentPosition(OnSuccess, onError, { enableHighAccuracy: true})
             }
@@ -137,7 +137,7 @@
             mapButton.addEventListener("click", onMapping, false);
 
             function onMapping() {
-                alert("Button works!");
+                console.log("Button works!");
                 updateMap();
             }
 
