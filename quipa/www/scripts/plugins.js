@@ -1,150 +1,67 @@
 ﻿(function () {
-    //check for page initialisation and #page1 - page init for jQuery mobile
-    $(document).on("pageinit", "#page1", function (e) {
+
+    //cordova - add listener to DOM & check deviceready event
+    document.addEventListener('deviceready', function (event) {
         //prevent any bound defaults
-        e.preventDefault();
-        //loader function after deviceready event returns
-        function onDeviceReady() {
+        event.preventDefault();
+        console.log("cordova checked...device ready");
 
-            //CAMERA
-            function onSuccess(imageData) {
-                var image = document.getElementById('imageView');
-                image.src = imageData;
-            }
+        //onsen - init event is fired after ons-page attached to DOM...
+        document.addEventListener('init', onsInit, false);
 
-            function onFail(message) {
-                console.log('Could not complete: ' + message);
-            }
-
-            function getPhoto(camera) {
-                if (camera === true) {
-                    //Use from Camera
-                    navigator.camera.getPicture(onSuccess, onFail, {
-                        quality: 50,
-                        correctOrientation: true,
-                        sourceType: Camera.PictureSourceType.CAMERA,
-                        destinationType: Camera.DestinationType.FILE_URI
-                    });
-                }
-                else {
-                    navigator.camera.getPicture(onSuccess, onFail, {
-                        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                        destinationType: Camera.DestinationType.FILE_URI
-                    });
-                }
-            }
-
-            $("#takePhoto").on("tap", function (e) {
-                e.preventDefault();
-                //show popup options for camera
-                $("#photoSelector").popup("open");
-            })
-
-            $("#cameraPhoto").on("tap", function (e) {
-                e.preventDefault();
-                //hide popup options for camera
-                $("#photoSelector").popup("close");
-                //call getPhoto() to access native device's camera
-                getPhoto(true);
-            })
-
-            $("#galleryPhoto").on("tap", function (e) {
-                e.preventDefault();
-                //hide popup options for camera
-                $("#photoSelector").popup("close");
-                getPhoto(false);
-            })
-            var address = undefined;
-            function updateMap(address) {
-
-                var OnSuccess = function (location) {
-                    var mapDiv = document.getElementById("map_canvas");
-                    //set size
-                    mapDiv.width = window.innerWidth - 30;
-                    mapDiv.height = window.innerHeight - 20;
-                    //connect plugin to canvas div
-                    var map = plugin.google.maps.Map.getMap(mapDiv);
-                    console.log("line 67 -- type of map " + typeof map);
-                    map.setDiv(mapDiv);
-                    console.log("line 68");
-                    //add event listener
-                    map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady, onError);
-                    console.log("line 72");
-                    function onMapReady() {
-                        console.log("Inside onMapReady");
-                        //get current lat/long
-                        var lat = location.coords.latitude;
-                        var long = location.coords.longitude;
-                        console.log("Lat: " + lat + " Long: " + long);
-                        var userLocation = new plugin.google.maps.LatLng(lat, long);
-                        console.log("userLocation is set");
-                        //Set map options
-                        map.setOptions({
-                            'backgroundColor': 'white',
-                            'mapType': plugin.google.maps.MapTypeId.HYBRID,
-                            'controls': {
-                                'compass': true,
-                                'myLocationButton': true,
-                                'indoorPicker': true,
-                                'zoom': true // Only for Android
-                            },
-                            'gestures': {
-                                'scroll': true,
-                                'tilt': true,
-                                'rotate': true,
-                                'zoom': true
-                            },
-                            'camera': {
-                                'latLng': userLocation,
-                                'tilt': 30,
-                                'zoom': 15,
-                                'bearing': 50
-                            },
-                            'preferences': {
-                                'zoom': {
-                                    'minZoom': 15,
-                                    'maxZoom': 18
-                                },
-                                'building': false
-                            }
-                        });
-                        console.log("Set options didn't break anything");
-                        //add marker for userLocation
-                        map.addMarker({
-                            'position': userLocation,
-                            'title': "You are here."
-                        },
-                            function (marker) {
-                                marker.showInfoWindow();
-                            });
-                        console.log("Reached end of onMapReady");
-                    }
-                };
-
-                var onError = function (error) {
-                    console.log("Something has gone wrong. Error: " + error.code + " " + error.message);
-                };
-                navigator.geolocation.getCurrentPosition(OnSuccess, onError, { enableHighAccuracy: true})
-            }
-
-
-            //map failed to load
-            var onError = function (error) {
-                alert("Something has gone wrong. Error: " + error.code + " " + error.message);
-            };
-
-            var locationButton = document.getElementById("mapButton");
-            mapButton.addEventListener("click", onMapping, false);
-
-            function onMapping() {
-                console.log("Button works!");
-                updateMap();
-            }
-
+        function onsInit(e) {
+            var page = e.target.id;
+            console.log("page-event=" + page);
+            getLocation();
         }
 
-        //as deviceready returns load onDeviceReady()
-        $(document).on("deviceready", onDeviceReady);
-    });
+        function onSuccess(location) {
+            //location recording time
+            var locationTime = Date(location.timestamp);
+            //device's latitude
+            var myLatitude = location.coords.latitude;
+            //device's longitude
+            var myLongitude = location.coords.longitude;
+            //device's altitude - depends on device specs and support
+            var myAltitude = location.coords.altitude;
+            //device's heading - depends on device specs and support
+            var myHeading = location.coords.heading;
+            //output test to console...
+            console.log("found location successfully!");
+            //output result to #location div...
+            var locationDiv = document.getElementById("location");
+            locationDiv.innerHTML = "<p>my latitude = " + myLatitude + "</p><p>my longitude = " + myLongitude + "</p>";
+            //build map with current latitude and longitude
+            buildMap(myLatitude, myLongitude);
+        }
+
+        function onFail(error) {
+            document.getElementById("location").innerHTML = "location error code = " + error.code + " message = " + error.message;
+        }
+
+        function getLocation() {
+            navigator.geolocation.getCurrentPosition(onSuccess,
+                onFail, {
+                    timeout: 15000,
+                    enableHighAccuracy: true
+                });
+        }
+
+        function buildMap(lat, long) {
+            //set combined position for user
+            var latlong = new google.maps.LatLng(lat, long);
+            //set required options
+            var mapOptions = {
+                center: latlong,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            //build map in map div...
+            var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            //add initial location marker
+            var marker = new google.maps.Marker({ position: latlong, map: map });
+        }
+
+    }, false);
 
 })();
