@@ -5,5 +5,9 @@ html, body {
 }
 
 #map_canvas {
-    height: 60%
+    height: 50%
+}
+
+#imageView {
+    align-content: center;
 }

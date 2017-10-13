@@ -6,11 +6,15 @@ document.addEventListener('init', function (event) {
     if (page.id === 'login') {
         page.querySelector('#push-button').onclick = function () {
             document.querySelector('#Navigator').pushPage('register.html', { data: { title: 'Register' } });
-            
+
         };
     } else if (page.id === 'register') {
         page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
         getLocation();
+        document.querySelector("#push-pic").onclick = function () {
+            document.querySelector('#Navigator').pushPage('profilepic.html', { date: { title: 'Upload a profile Picture' } });
+        };
+    } else if (page.id === 'profilepic') {
         page.querySelector("#cameraPhoto").onclick = function (e) {
             e.preventDefault();
             //call getPhoto() to access native device's camera
@@ -82,7 +86,7 @@ document.addEventListener('init', function (event) {
         if (camera === true) {
             //Use from Camera
             navigator.camera.getPicture(onSuccessImage, onFailImage, {
-                quality: 50,
+                quality: 30,
                 correctOrientation: true,
                 sourceType: Camera.PictureSourceType.CAMERA,
                 destinationType: Camera.DestinationType.FILE_URI

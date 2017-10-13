@@ -59,25 +59,73 @@
                 <!--NAV BAR-->
                 <div class="left"><ons-back-button>Sign In</ons-back-button></div>
                 <div class="center"></div>
-                <!--Not sure how to make this less squashed looking-->
-                <div class="right">
+                <div class="right">Upload profile picture<ons-icon id="push-pic" icon="ion-chevron-right"></ons-icon>
                 </div>
             </ons-toolbar> <!--end NAV BAR-->
 
-            <div id="location"></div>
-            <!-- MAP CANVAS-->
-            <div id="map_canvas"></div>
+            <ons-list> <!--REGISTRATION FORM-->
+                <ons-list-item>
+                    <input type="text" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                </ons-list-item>
 
-            <div class="left">Take a profile picture</div>
-            <div class="center">
-                <ons-fab id="cameraPhoto"><ons-icon icon="ion-camera" size="40px"></ons-icon></ons-fab>
-            </div>
-            <div class="right">
-                <ons-fab id="galleryPhoto"><ons-icon icon="ion-images" size="40px"></ons-icon></ons-fab>
-            </div>
+                <ons-list-item>
+                    <input type="text" placeholder="Email Address" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                </ons-list-item>
+                <ons-list-item>
+                    <input type="text" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                </ons-list-item>
+
+                <ons-list-item>
+                    <!--SEX SELECTION-->
+                    <ons-row>
+                        <ons-col width="90px">
+                            <span style="color: #666">Gender</span>
+                        </ons-col>
+                        <ons-col>
+
+                            <div style="float: right; padding-right: 16px;">
+                                    <input type="radio" name="level">
+                                    <div class="radio-button__checkmark"></div>
+                                    Male
+
+                                    <input type="radio" name="level">
+                                    <div class="radio-button__checkmark"></div>
+                                    Female
+                            </div>
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item><!--END SEX SELECTION-->
+                </ons-list>
+                    <div id="location"></div>
+                    <!-- MAP CANVAS-->
+                    <div id="map_canvas"></div>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="profilepic.html">
+        <ons-page id="profilepic">
+            <ons-toolbar>
+                <!--NAV BAR-->
+                <div class="left"><ons-back-button></ons-back-button></div>
+                <div class="center"></div>
+                <div class="right"></div>
+            </ons-toolbar> <!--end NAV BAR-->
+
+            <!--PHOTO OPTIONS-->
+
+            <ons-speed-dial position="bottom" direction="up">
+                <ons-fab id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
+                <ons-speed-dial-item>
+                    <ons-icon id="cameraPhoto" icon="ion-camera" size="35px"></ons-icon>
+                </ons-speed-dial-item>
+                <ons-speed-dial-item>
+                    <ons-icon id="galleryPhoto" icon="ion-images" size="35px"></ons-icon>
+                </ons-speed-dial-item>
+            </ons-speed-dial>
             <div id="photo">
-                <img id="imageView" style="width: 70%;"/>Profile Picture
+                <img id="imageView" style="width: 50%;" />Profile Picture
             </div><!-- /photo preview -->
+
         </ons-page>
     </ons-template>
 
