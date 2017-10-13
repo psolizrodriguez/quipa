@@ -6,14 +6,22 @@ document.addEventListener('init', function (event) {
     if (page.id === 'login') {
         page.querySelector('#push-button').onclick = function () {
             document.querySelector('#Navigator').pushPage('register.html', { data: { title: 'Register' } });
+            
         };
     } else if (page.id === 'register') {
         page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
-        var page = event.target.id;
         getLocation();
+        page.querySelector("#cameraPhoto").onclick = function (e) {
+            e.preventDefault();
+            //call getPhoto() to access native device's camera
+            getPhoto(true);
+        };
     }
 
+
+    //LOCATION FUNCTIONS
     function onSuccess(location) {
+        console.log("Inside location success call");
         //location recording time
         var locationTime = Date(location.timestamp);
         var lat = location.coords.latitude;
@@ -30,6 +38,7 @@ document.addEventListener('init', function (event) {
     }
 
     function getLocation() {
+        console.log("getLocation fired");
         navigator.geolocation.getCurrentPosition(onSuccess,
             onFail, {
                 timeout: 15000,
@@ -51,4 +60,36 @@ document.addEventListener('init', function (event) {
         //add initial location marker
         var marker = new google.maps.Marker({ position: latlong, map: map });
     }
-    });
+
+    function onSuccessImage(imageData) {
+        console.log("Inside on success");
+        console.log("imageData is of type " + typeof imageData);
+        var image = document.getElementById('imageView');
+        image.src = imageData;
+    }
+
+    function onFailImage(message) {
+        alert('Could not complete: ' + message);
+    }
+
+    function getPhoto(camera) {
+        console.log("Inside of getPhoto");
+        if (camera === true) {
+            //Use from Camera
+            navigator.camera.getPicture(onSuccessImage, onFailImage, {
+                quality: 50,
+                correctOrientation: true,
+                sourceType: Camera.PictureSourceType.CAMERA,
+                destinationType: Camera.DestinationType.FILE_URI
+            });
+        }
+        else {
+            navigator.camera.getPicture(onSuccessImage, onFailImage, {
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                destinationType: Camera.DestinationType.FILE_URI
+            });
+        }
+    }
+
+
+});
