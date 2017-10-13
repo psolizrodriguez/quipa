@@ -56,6 +56,7 @@ document.addEventListener('init', function (event) {
 
     function buildMap(lat, long) {
         //set combined position for user
+        console.log("Inside of buildMap");
         var latlong = new google.maps.LatLng(lat, long);
         //set required options
         var mapOptions = {
@@ -68,6 +69,7 @@ document.addEventListener('init', function (event) {
         var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         //add initial location marker
         var marker = new google.maps.Marker({ position: latlong, map: map });
+        console.log("Marker has been added");
     }
 
     function onSuccessImage(imageData) {

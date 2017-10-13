@@ -9,5 +9,14 @@ html, body {
 }
 
 #imageView {
+    width: 50%;
     align-content: center;
+}
+
+#photo {
+    margin: 3em;
+}
+
+#bottombar {
+    background-color: aquamarine;
 }
