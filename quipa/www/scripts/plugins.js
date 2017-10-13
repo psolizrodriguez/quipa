@@ -16,15 +16,11 @@ document.addEventListener('init', function (event) {
     function onSuccess(location) {
         //location recording time
         var locationTime = Date(location.timestamp);
-        //device's latitude
         var lat = location.coords.latitude;
-        //device's longitude
         var long = location.coords.longitude;
-        //device's heading - depends on device specs and support
-        var myHeading = location.coords.heading;
         //output result to #location div...
         var locationDiv = document.getElementById("location");
-        locationDiv.innerHTML = "<p>my latitude = " + lat + "</p><p>my longitude = " + long + "</p>";
+        locationDiv.innerHTML = "<p>You are at: " + lat + " latitude </p><p>and " + long + " longitude</p>";
         //build map with current latitude and longitude
         buildMap(lat, long);
     }
