@@ -16,6 +16,10 @@ document.addEventListener('init', function (event) {
             //call getPhoto() to access native device's camera
             getPhoto(true);
         };
+        page.querySelector("#galleryPhoto").onclick = function (e) {
+            e.preventDefault();
+            getPhoto(false);
+        }
     }
 
 
@@ -53,9 +57,10 @@ document.addEventListener('init', function (event) {
         var mapOptions = {
             center: latlong,
             zoom: 12,
+            zoomControl: false,
+            gestureHandling: 'none',
             mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        //build map in map div...
+        }; //zoom control and gesture handling to keep map from flopping about when user is scrolling
         var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         //add initial location marker
         var marker = new google.maps.Marker({ position: latlong, map: map });
