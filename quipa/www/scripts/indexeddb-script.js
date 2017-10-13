@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         openRequest.onupgradeneeded = function (e) {
             console.log("Upgrading...");
             var thisDB = e.target.result;
+            //thisDB is a handler
 
             if (!thisDB.objectStoreNames.contains("firstObjStore")) {
                 thisDB.createObjectStore("firstObjStore");

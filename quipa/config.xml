@@ -90,14 +90,14 @@
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="4.2.0" />
     <engine name="windows" spec="4.4.2" />
+    <plugin name="com.googlemaps.ios" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1" />
     <plugin name="cordova-plugin-compat" spec="~1.1.0" />
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
-    <plugin name="cordova-plugin-indexedDB" spec="~0.1.2" />
-    <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
-    <plugin name="com.googlemaps.ios" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk" />
-    <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
+    <plugin name="cordova-plugin-googlemaps" spec="git+https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps">
         <variable name="API_KEY_FOR_IOS" value="AIzaSyAMsQNZwEkwAxN5rRy6QqEOwZ29lDPG4NA" />
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyASk0uLn0oKU0ieI4ctfhkHIf9avURnlC4" />
     </plugin>
+    <plugin name="cordova-plugin-indexedDB" spec="~0.1.2" />
+    <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
 </widget>
