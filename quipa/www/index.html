@@ -7,16 +7,10 @@
     <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
-    
-    <script src="scripts/plugins.js"></script>
-    <!--SCRIPTS-->
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyByWZWszhkQu3a_jQGY8qSqHQpdzv8RRGQ" type="text/javascript"></script>
-
 </head>
 <body>
-    <ons-navigator id="navigator" var=myNav page="login.html"></ons-navigator>
+    <!--angular controller-->
+    <ons-navigator swipeable id="Navigator" page="login.html"></ons-navigator>
     <!-- login -->
     <ons-template id="login.html">
         <ons-page id="login">
@@ -27,7 +21,7 @@
                 <div class="center">QUIPA</div>
                 <!--Not sure how to make this less squashed looking-->
                 <div class="right">
-                    <ons-button modifier="cta" id="btnSignIn" ng-click="myNav.pushPage('register.html', { animation : 'slide' } )">
+                    <ons-button modifier="cta" id="push-button">
                         Register
                     </ons-button>
                 </div>
@@ -45,7 +39,7 @@
                 </ons-list> <!--END LOGIN FORM-->
 
                 <div class="center">
-                    <ons-button modifier="large--cta" id="btnSignIn" onclick="LogIn()">
+                    <ons-button modifier="large--cta" id="btnSignIn" onclick="LogIn()"> <!--need to write-->
                         Login
                     </ons-button>
                 </div>
@@ -56,20 +50,32 @@
                     <br>
                 </ons-modal>
                 </div>
+        </ons-page>
+    </ons-template> <!--ENG LOGIN MAIN PAGE-->
+
+    <ons-template id="register.html">
+        <ons-page id="register">
+            <ons-toolbar>
+                <!--NAV BAR-->
+                <div class="left"><ons-back-button>Sign In</ons-back-button></div>
+                <div class="center"></div>
+                <!--Not sure how to make this less squashed looking-->
+                <div class="right">
+                </div>
+            </ons-toolbar> <!--end NAV BAR-->
 
             <div id="location"></div>
             <!-- add container for map-->
             <div id="map_canvas"></div>
         </ons-page>
-    </ons-template> <!--ENG LOGIN MAIN PAGE-->
-
-    <ons-template id="register.html">
-        <ons-page>
-
-
-            
-        </ons-page>
     </ons-template>
+
+    <!--SCRIPTS-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyByWZWszhkQu3a_jQGY8qSqHQpdzv8RRGQ" type="text/javascript"></script>
+    <script src="scripts/plugins.js"></script>
+
 
 </body>
 </html>
