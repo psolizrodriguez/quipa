@@ -159,10 +159,10 @@ document.addEventListener('init', function (event) {
 
         var geocoder = new google.maps.Geocoder;
         
-        var dummylatlng = [[41.867510, -87.621478, "John Doe, $15/hr", 5, 'parking_lot_maps.png'], [41.862603, -87.614828, "Taro Tanaka, $17/hr", 6, 'library_maps.png']];
-        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var dummylatlng = [[41.867510, -87.621478, "John Doe, $15/hr", 5, 'https://i.imgur.com/uqvXllH.png'], [41.862603, -87.614828, "Taro Tanaka, $17/hr", 6, 'https://i.imgur.com/KrIHCD2.png']];
+        //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
-        //lat, long, prospect info, userid, pfofilepic
+        //lat, long, prospect info, userid, profilepic
         for (i = 0; i < dummylatlng.length; i++){
             for (k = 0; k < dummylatlng[i].length; k++){
                 var infowindow = new google.maps.InfoWindow;
@@ -173,7 +173,7 @@ document.addEventListener('init', function (event) {
                 map.setZoom(13);
                 var marker = new google.maps.Marker({
                     position: d_latlng,
-                    icon: iconBase+profilePic,
+                    icon: profilePic,
                     map: map
                 });
                 infowindow.setContent(prospect);
