@@ -122,6 +122,9 @@ document.addEventListener('init', function (event) {
         var locationDiv = document.getElementById("searchLocation");
         locationDiv.innerHTML = "<p>You are at: " + lat + " latitude </p><p>and " + long + " longitude</p>";
         //build map with current latitude and longitude
+
+      //  geocodeLatLng(geocoder, map, infowindow);
+       // getWorkers(lat, long);
         buildMapSearch(lat, long);
     }
 
@@ -137,6 +140,10 @@ document.addEventListener('init', function (event) {
                 enableHighAccuracy: true
             });
     }
+
+   /* getWorkers(lat, long){
+    
+    } */
 
     function buildMapSearch(lat, long) {
         //set combined position for user
@@ -154,7 +161,31 @@ document.addEventListener('init', function (event) {
         //add initial location marker
         var marker = new google.maps.Marker({ position: latlong, map: map });
         console.log("Marker has been added");
+
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+        var dummylatlng = [41.86510, -87.621478];
+        var d_latlng = { lat: parseFloat(dummylatlng[0]), lng: parseFloat(dummylatlng[1]) };
+        geocoder.geocode({ 'location': d_latlng }, function (results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    map.setZoom(11);
+                    var marker = new google.maps.Marker({
+                        position: d_latlng,
+                        map: map
+                    });
+                    infowindow.setContent(results[0].formatted_address);
+                    infowindow.open(map, marker);
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+                window.alert('Geocoder failed due to: ' + status);
+            }
+        });
+
     }
+    
 
 
 });
