@@ -164,7 +164,7 @@ document.addEventListener('init', function (event) {
 
         var geocoder = new google.maps.Geocoder;
         var infowindow = new google.maps.InfoWindow;
-        var dummylatlng = [41.86510, -87.621478];
+        var dummylatlng = [41.867510, -87.621478];
         var d_latlng = { lat: parseFloat(dummylatlng[0]), lng: parseFloat(dummylatlng[1]) };
         geocoder.geocode({ 'location': d_latlng }, function (results, status) {
             if (status === 'OK') {
@@ -176,6 +176,9 @@ document.addEventListener('init', function (event) {
                     });
                     infowindow.setContent(results[0].formatted_address);
                     infowindow.open(map, marker);
+                    marker.addListener('click', function () {
+                        console.log("Marker clicked!");
+                    });
                 } else {
                     window.alert('No results found');
                 }
