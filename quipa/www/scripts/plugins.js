@@ -144,13 +144,7 @@ document.addEventListener('init', function (event) {
         var locationTime = Date(location.timestamp);
         var lat = location.coords.latitude;
         var long = location.coords.longitude;
-        //output result to #location div...
-        var locationDiv = document.getElementById("searchLocation");
-        locationDiv.innerHTML = "<p>You are at: " + lat + " latitude </p><p>and " + long + " longitude</p>";
         //build map with current latitude and longitude
-
-      //  geocodeLatLng(geocoder, map, infowindow);
-       // getWorkers(lat, long);
         buildMapSearch(lat, long);
     }
 

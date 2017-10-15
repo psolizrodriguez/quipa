@@ -117,7 +117,7 @@
 
             <!--PHOTO OPTIONS-->
 
-            <ons-bottom-toolbar id="bottombar">Upload Profile Picture</ons-bottom-toolbar>
+            <ons-bottom-toolbar class="bottombar">Upload Profile Picture</ons-bottom-toolbar>
                 <ons-speed-dial position="bottom right" direction="up">
                     <ons-fab id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
                     <ons-speed-dial-item>
@@ -138,6 +138,7 @@
     <ons-template id="peopleMap.html">
         <ons-page id="peopleMap">
 
+            Needed for <input id="hours" type="number" /> hours on <input id="workDate" type="date" /><br />
             <div class="dropdown">
                 <button id="dropButton" class="dropbtn">Skills</button>
                 <div id="myDropdown" class="dropdown-content">
@@ -147,9 +148,6 @@
                 </div>
             </div>
 
-            <div style="text-align: left; margin-top: 10px;">
-                <ons-search-input placeholder="Search"></ons-search-input>
-            </div>
 
 
         <div id="searchLocation"></div>
@@ -157,6 +155,13 @@
         <!-- MAP CANVAS-->
         <div id="search_map"></div>
 
+            <ons-bottom-toolbar class="bottombar">
+                    <ons-toolbar-button class="currentPage"><ons-icon icon="ion-ios-search-strong" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-star" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-person-stalker" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-email" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-person" size="40px"></ons-icon></ons-toolbar-button>
+            </ons-bottom-toolbar>
         </ons-page>
     </ons-template>
 

@@ -21,9 +21,11 @@ html, body {
     margin: 3em;
 }
 
-#bottombar {
-    background-color: #97bdfc;
+.bottombar {
+    background-color: #6bb4e5;
+    display: block;
 }
+
 
 .dropbtn {
     background-color: #6bb4e5;
@@ -60,3 +62,22 @@ html, body {
 .show {
     display: block;
 }
+
+#hours {
+    width: 70px;
+    height: 50px;
+}
+
+#workDate {
+    width: 70px;
+    height: 50px;
+}
+
+.currentPage {
+    background: #77bfef;
+}
+
+.btmicons {
+    padding-left: .5em;
+}
+
