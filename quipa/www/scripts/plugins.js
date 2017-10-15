@@ -11,9 +11,6 @@ document.addEventListener('init', function (event) {
     } else if (page.id === 'register') {
         page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
         getLocation();
-        document.querySelector("#push-pic").onclick = function () {
-            document.querySelector('#Navigator').pushPage('profilepic.html', { date: { title: 'Upload a profile Picture' } });
-        };
     } else if (page.id === 'profilepic') {
         page.querySelector("#cameraPhoto").onclick = function (e) {
             e.preventDefault();
@@ -35,14 +32,14 @@ document.addEventListener('init', function (event) {
         var lat = location.coords.latitude;
         var long = location.coords.longitude;
         //output result to #location div...
-        var locationDiv = document.getElementById("location");
-        locationDiv.innerHTML = "<p>You are at: " + lat + " latitude </p><p>and " + long + " longitude</p>";
+        document.getElementById("latitude").value=lat;
+        document.getElementById("longitude").value=long;
         //build map with current latitude and longitude
         buildMap(lat, long);
     }
 
     function onFail(error) {
-        document.getElementById("location").innerHTML = "location error code = " + error.code + " message = " + error.message;
+        console.log("location error code = " + error.code + " message = " + error.message);
     }
 
     function getLocation() {
