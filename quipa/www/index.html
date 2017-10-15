@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>QUIPA</title>
@@ -39,6 +39,7 @@
 
                 <div class="center">
                     <ons-button class="btn" modifier="large--cta" id="btnSignIn" onclick="LogIn()"> <!--need to write-->
+
                         Login
                     </ons-button>
                 </div> <!--LOGIN DIV-->
@@ -58,43 +59,44 @@
                 <!--NAV BAR-->
                 <div class="left"><ons-back-button>Sign In</ons-back-button></div>
                 <div class="center"></div>
+                <!--<div class="right">
+                    <ons-button id="push-pic">Photo</ons-button>
+                </div>-->
                 <div class="right">
+                    <ons-button onclick="createProfile()">Submit</ons-button>
                 </div>
             </ons-toolbar> <!--end NAV BAR-->
 
             <ons-list> <!--REGISTRATION FORM-->
                 <ons-list-item>
-                    <input type="text" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                    <input id="name" type="text" placeholder="Full Name" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                </ons-list-item>
+                <ons-list-item>
+                    <textarea id="description" type="text" placeholder="About the prospect" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;"></textarea>
                 </ons-list-item>
 
                 <ons-list-item>
-                    <input type="text" placeholder="Email Address" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                    <input id="email" type="text" placeholder="Email Address" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
                 </ons-list-item>
                 <ons-list-item>
-                    <input type="text" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                    <input id="password" type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
                 </ons-list-item>
-
                 <ons-list-item>
-                    <!--SEX SELECTION-->
-                    <ons-row>
-                        <ons-col width="90px">
-                            <span style="color: #666">Gender</span>
-                        </ons-col>
-                        <ons-col>
+                    <input id="mobilePhoneNumber" type="text" placeholder="Phone Number" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                </ons-list-item>
+                <input id="latitude" type="hidden"/>
+                <input id="longitude" type="hidden"/>
+            </ons-list>
+            <div id="location"></div>
+            <!-- MAP CANVAS-->
+            <div id="map_canvas"></div>
 
-                            <div style="float: right; padding-right: 16px;">
-                                    <input type="radio" name="level">
-                                    <div class="radio-button__checkmark"></div>
-                                    Male
+        </ons-page>
+    </ons-template>
 
-                                    <input type="radio" name="level">
-                                    <div class="radio-button__checkmark"></div>
-                                    Female
-                            </div>
-                        </ons-col>
-                    </ons-row>
-                </ons-list-item><!--END SEX SELECTION-->
-                </ons-list>
+    <ons-template id="profilecreated.html">
+        <ons-page id="profilecreated">
+
             <div class="center">
                 <ons-button class="btn" id="push-pic">Continue building profile  <ons-icon icon="ion-chevron-right" size="15px"></ons-icon></ons-button>
             <!--Need to write this so that it also saves form info-->
@@ -102,6 +104,8 @@
                     <div id="location"></div>
                     <!-- MAP CANVAS-->
                     <div id="map_canvas"></div>
+                <ons-button onclick="backToLogin()">Profile Created!</ons-button>
+
         </ons-page>
     </ons-template>
 
@@ -116,6 +120,7 @@
             </ons-toolbar> <!--end NAV BAR-->
 
             <!--PHOTO OPTIONS-->
+
 
             <ons-bottom-toolbar class="bottombar">Upload Profile Picture</ons-bottom-toolbar>
                 <ons-speed-dial position="bottom right" direction="up">
@@ -187,7 +192,8 @@
     <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyByWZWszhkQu3a_jQGY8qSqHQpdzv8RRGQ" type="text/javascript"></script>
     <script src="scripts/plugins.js"></script>
-    <script type="text/javascript" src="scripts/indexeddb-script.js"></script>
+     <script type="text/javascript" src="scripts/indexeddb-script.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
 
 
 </body>
