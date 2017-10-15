@@ -8,12 +8,17 @@ document.addEventListener('init', function (event) {
             document.querySelector('#Navigator').pushPage('register.html', { data: { title: 'Register' } });
 
         };
+        page.querySelector("#push-peopleMap").onclick = function () {
+            console.log("In here");
+            document.querySelector('#Navigator').pushPage('peopleMap.html', { date: { title: 'Upload a profile Picture' } });
+        };
     } else if (page.id === 'register') {
         page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
         getLocation();
         document.querySelector("#push-pic").onclick = function () {
             document.querySelector('#Navigator').pushPage('profilepic.html', { date: { title: 'Upload a profile Picture' } });
         };
+        
     } else if (page.id === 'profilepic') {
         page.querySelector("#cameraPhoto").onclick = function (e) {
             e.preventDefault();
@@ -23,7 +28,10 @@ document.addEventListener('init', function (event) {
         page.querySelector("#galleryPhoto").onclick = function (e) {
             e.preventDefault();
             getPhoto(false);
-        }
+        };
+
+    } else if (page.id === 'peopleMap') {
+        getSearcherLocation();
     }
 
 
@@ -100,6 +108,52 @@ document.addEventListener('init', function (event) {
                 destinationType: Camera.DestinationType.FILE_URI
             });
         }
+    }
+
+
+    //PEOPLE MAP LOCATION FUNCTIONS
+    function onSuccessPM(location) {
+        console.log("Inside location success call");
+        //location recording time
+        var locationTime = Date(location.timestamp);
+        var lat = location.coords.latitude;
+        var long = location.coords.longitude;
+        //output result to #location div...
+        var locationDiv = document.getElementById("searchLocation");
+        locationDiv.innerHTML = "<p>You are at: " + lat + " latitude </p><p>and " + long + " longitude</p>";
+        //build map with current latitude and longitude
+        buildMapSearch(lat, long);
+    }
+
+    function onFailPM(error) {
+        document.getElementById("searchLocation").innerHTML = "location error code = " + error.code + " message = " + error.message;
+    }
+
+    function getSearcherLocation() {
+        console.log("getLocation fired");
+        navigator.geolocation.getCurrentPosition(onSuccessPM,
+            onFailPM, {
+                timeout: 15000,
+                enableHighAccuracy: true
+            });
+    }
+
+    function buildMapSearch(lat, long) {
+        //set combined position for user
+        console.log("Inside of buildMapSearch");
+        var latlong = new google.maps.LatLng(lat, long);
+        //set required options
+        var mapOptions = {
+            center: latlong,
+            zoom: 12,
+            zoomControl: false,
+            gestureHandling: 'none',
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }; //zoom control and gesture handling to keep map from flopping about when user is scrolling
+        var map = new google.maps.Map(document.getElementById("search_map"), mapOptions);
+        //add initial location marker
+        var marker = new google.maps.Marker({ position: latlong, map: map });
+        console.log("Marker has been added");
     }
 
 
