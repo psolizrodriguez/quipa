@@ -137,10 +137,25 @@
 
     <ons-template id="peopleMap.html">
         <ons-page id="peopleMap">
-            <div id="searchLocation"></div>
-            <div id="latlng"></div>
-            <!-- MAP CANVAS-->
-            <div id="search_map"></div>
+
+            <div class="dropdown">
+                <button id="dropButton" class="dropbtn">Dropdown</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px;">
+                <ons-search-input placeholder="Search"></ons-search-input>
+            </div>
+
+
+        <div id="searchLocation"></div>
+        <div id="latlng"></div>
+        <!-- MAP CANVAS-->
+        <div id="search_map"></div>
 
         </ons-page>
     </ons-template>
