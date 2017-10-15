@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>QUIPA</title>
@@ -9,7 +9,6 @@
 
 </head>
 <body>
-    <!--angular controller-->
     <ons-navigator swipeable id="Navigator" page="login.html"></ons-navigator>
     <!-- login -->
     <ons-template id="login.html">
@@ -43,10 +42,16 @@
                         Login
                     </ons-button>
                 </div> <!--LOGIN DIV-->
-            </div> <!--homeContent DIV-->
+                </div> <!--homeContent DIV-->
+            <br />
+            <ons-button modifier="cta" id="push-peopleMap">
+                Testing - People Map
+            </ons-button>
         </ons-page>
     </ons-template> <!--END LOGIN MAIN PAGE-->
 
+
+                                                         <!--REGISTRATION PAGE-->
     <ons-template id="register.html">
         <ons-page id="register">
             <ons-toolbar>
@@ -97,6 +102,7 @@
         </ons-page>
     </ons-template>
 
+                                                     <!--PROFILE PICTURE PAGE-->
     <ons-template id="profilepic.html">
         <ons-page id="profilepic">
             <ons-toolbar>
@@ -119,10 +125,26 @@
                 </ons-speed-dial-item>
             </ons-speed-dial>
 
-
             <div id="photo">
                 <img id="imageView"/><br />Profile Picture
             </div><!-- /photo preview -->
+
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="peopleMap.html">
+        <ons-page id="peopleMap">
+            <div id="searchLocation"></div>
+            <div id="latlng"></div>
+            <!-- MAP CANVAS-->
+            <div id="search_map"></div>
+
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="fakeProfile.html">
+        <ons-page id="fakeProfile">
+            <p>You made it to a fake profile by clicking a marker!</p>
 
         </ons-page>
     </ons-template>
