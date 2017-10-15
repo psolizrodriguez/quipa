@@ -37,7 +37,7 @@ document.addEventListener('init', function (event) {
             toggleDrop();
             // Close the dropdown if the user clicks outside of it
             window.onclick = function (event) {
-                if (!event.target.matches('.dropbtn')) {
+                if (!event.target.matches('.dropbtn')){
 
                     var dropdowns = document.getElementsByClassName("dropdown-content");
                     var i;
@@ -50,12 +50,11 @@ document.addEventListener('init', function (event) {
                 }
             }
         }
-
         
-
 
     }
 
+    //SKILL TOGGLE FOR SEARCH PAGE
     function toggleDrop() {
         console.log("Toggled list");
         document.getElementById("myDropdown").classList.toggle("show");
