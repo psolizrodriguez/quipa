@@ -14,13 +14,13 @@
     <ons-template id="login.html">
         <ons-page id="login">
             <!-- page toolbar -->
-            <ons-toolbar>
+            <ons-toolbar class="topBar">
                 <!--NAV BAR-->
                 <div class="left"></div>
                 <div class="center">QUIPA</div>
                 <!--Not sure how to make this less squashed looking-->
                 <div class="right">
-                    <ons-button modifier="cta" id="push-button">
+                    <ons-button class="btn" modifier="cta" id="push-button">
                         Register
                     </ons-button>
                 </div>
@@ -38,13 +38,14 @@
                 </ons-list> <!--END LOGIN FORM-->
 
                 <div class="center">
-                    <ons-button modifier="large--cta" id="btnSignIn"> <!--need to write-->
+                    <ons-button class="btn" modifier="large--cta" id="btnSignIn" onclick="LogIn()"> <!--need to write-->
+
                         Login
                     </ons-button>
                 </div> <!--LOGIN DIV-->
                 </div> <!--homeContent DIV-->
             <br />
-            <ons-button modifier="cta" id="push-peopleMap">
+            <ons-button class="btn" modifier="cta" id="push-peopleMap">
                 Testing - People Map
             </ons-button>
         </ons-page>
@@ -54,7 +55,7 @@
                                                          <!--REGISTRATION PAGE-->
     <ons-template id="register.html">
         <ons-page id="register">
-            <ons-toolbar>
+            <ons-toolbar class="topBar">
                 <!--NAV BAR-->
                 <div class="left"><ons-back-button>Sign In</ons-back-button></div>
                 <div class="center"></div>
@@ -97,15 +98,21 @@
         <ons-page id="profilecreated">
 
             <div class="center">
+                <ons-button class="btn" id="push-pic">Continue building profile  <ons-icon icon="ion-chevron-right" size="15px"></ons-icon></ons-button>
+            <!--Need to write this so that it also saves form info-->
+            </div> <!--LOGIN DIV-->
+                    <div id="location"></div>
+                    <!-- MAP CANVAS-->
+                    <div id="map_canvas"></div>
                 <ons-button onclick="backToLogin()">Profile Created!</ons-button>
-            </div>
+
         </ons-page>
     </ons-template>
 
                                                      <!--PROFILE PICTURE PAGE-->
     <ons-template id="profilepic.html">
         <ons-page id="profilepic">
-            <ons-toolbar>
+            <ons-toolbar class="topBar">
                 <!--NAV BAR-->
                 <div class="left"><ons-back-button></ons-back-button></div>
                 <div class="center"></div>
@@ -114,16 +121,17 @@
 
             <!--PHOTO OPTIONS-->
 
-            <ons-bottom-toolbar id="bottombar">Upload Profile Picture</ons-bottom-toolbar>
-            <ons-speed-dial position="bottom right" direction="up">
-                <ons-fab id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
-                <ons-speed-dial-item>
-                    <ons-icon id="cameraPhoto" icon="ion-camera" size="32px"></ons-icon>
-                </ons-speed-dial-item>
-                <ons-speed-dial-item>
-                    <ons-icon id="galleryPhoto" icon="ion-images" size="32px"></ons-icon>
-                </ons-speed-dial-item>
-            </ons-speed-dial>
+
+            <ons-bottom-toolbar class="bottombar">Upload Profile Picture</ons-bottom-toolbar>
+                <ons-speed-dial position="bottom right" direction="up">
+                    <ons-fab id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
+                    <ons-speed-dial-item>
+                        <ons-icon id="cameraPhoto" icon="ion-camera" size="32px"></ons-icon>
+                    </ons-speed-dial-item>
+                    <ons-speed-dial-item>
+                        <ons-icon id="galleryPhoto" icon="ion-images" size="32px"></ons-icon>
+                    </ons-speed-dial-item>
+                </ons-speed-dial>
 
             <div id="photo">
                 <img id="imageView"/><br />Profile Picture
@@ -134,11 +142,41 @@
 
     <ons-template id="peopleMap.html">
         <ons-page id="peopleMap">
-            <div id="searchLocation"></div>
-            <div id="latlng"></div>
-            <!-- MAP CANVAS-->
-            <div id="search_map"></div>
+            <ons-toolbar class="topBar">
+                <div class="topBarContents">Quipa</div>
+            </ons-toolbar>
+            <div class="searching">
+               I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /><br />
 
+                    <div id="myDropdown" class="dropdown-content">
+                        <form>
+                            <input type="radio" name="skill" value="hairdresser"><ons-icon icon="ion-scissors" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="carpenter"><ons-icon icon="ion-hammer" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="mechanic"><ons-icon icon="ion-wrench" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="accountant"><ons-icon icon="ion-calculator" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="locksmith"><ons-icon icon="ion-key" size="40px" style="padding-right:.5em;"></ons-icon>
+                            <ons-button class="btn">Search!</ons-button>
+                        </form>
+                
+            </div>
+                </div>
+            
+            
+
+
+
+        <div id="searchLocation"></div>
+        <div id="latlng"></div>
+        <!-- MAP CANVAS-->
+        <div id="search_map"></div>
+
+            <ons-bottom-toolbar class="bottombar">
+                    <ons-toolbar-button class="currentPage"><ons-icon icon="ion-ios-search-strong" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-star" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-person-stalker" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-email" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-person" size="40px"></ons-icon></ons-toolbar-button>
+            </ons-bottom-toolbar>
         </ons-page>
     </ons-template>
 
