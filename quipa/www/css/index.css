@@ -8,8 +8,12 @@ html, body {
     height: 50%;
 }
 
+.btn {
+    background-color: #6bb4e5;
+}
+
 #search_map{
-    height: 50%;
+    height: 85%;
 }
 
 #imageView {
@@ -26,51 +30,36 @@ html, body {
     display: block;
 }
 
-
-.dropbtn {
+.topBar {
     background-color: #6bb4e5;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    height: 60px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+.topBarContents{
+    padding-left: 5.5em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    font-size: 2rem;
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .dropdown-content {
-    display: none;
-    float: right;
-    background-color: #FFFFFF;
     min-width: 160px;
-    height: 55px;
-    padding: 10px 10px 0px 0px;
+    height: 50px;
+    padding-left: 1em;
     overflow: auto;
     z-index: 1;
 }
 
-.dropdown-content a {
-        color: black;
-        padding: 9px 7px;
-        text-decoration: none;
-        display: block;
-    }
-
-.show {
-    display: block;
-}
 
 #hours {
-    width: 70px;
-    height: 50px;
+    width: 20px;
+    height: 25px;
 }
 
 #workDate {
-    width: 70px;
-    height: 50px;
+    width: 115px;
+    height: 30px;
 }
 
 .currentPage {
@@ -79,5 +68,13 @@ html, body {
 
 .btmicons {
     padding-left: .5em;
+}
+
+.radio {
+    padding-left: .5em;
+}
+
+.searching {
+    background-color: #83c8f7;
 }
 

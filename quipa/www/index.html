@@ -14,13 +14,13 @@
     <ons-template id="login.html">
         <ons-page id="login">
             <!-- page toolbar -->
-            <ons-toolbar>
+            <ons-toolbar class="topBar">
                 <!--NAV BAR-->
                 <div class="left"></div>
                 <div class="center">QUIPA</div>
                 <!--Not sure how to make this less squashed looking-->
                 <div class="right">
-                    <ons-button modifier="cta" id="push-button">
+                    <ons-button class="btn" modifier="cta" id="push-button">
                         Register
                     </ons-button>
                 </div>
@@ -38,13 +38,13 @@
                 </ons-list> <!--END LOGIN FORM-->
 
                 <div class="center">
-                    <ons-button modifier="large--cta" id="btnSignIn" onclick="LogIn()"> <!--need to write-->
+                    <ons-button class="btn" modifier="large--cta" id="btnSignIn" onclick="LogIn()"> <!--need to write-->
                         Login
                     </ons-button>
                 </div> <!--LOGIN DIV-->
                 </div> <!--homeContent DIV-->
             <br />
-            <ons-button modifier="cta" id="push-peopleMap">
+            <ons-button class="btn" modifier="cta" id="push-peopleMap">
                 Testing - People Map
             </ons-button>
         </ons-page>
@@ -54,7 +54,7 @@
                                                          <!--REGISTRATION PAGE-->
     <ons-template id="register.html">
         <ons-page id="register">
-            <ons-toolbar>
+            <ons-toolbar class="topBar">
                 <!--NAV BAR-->
                 <div class="left"><ons-back-button>Sign In</ons-back-button></div>
                 <div class="center"></div>
@@ -96,7 +96,7 @@
                 </ons-list-item><!--END SEX SELECTION-->
                 </ons-list>
             <div class="center">
-                <ons-button id="push-pic">Continue building profile  <ons-icon icon="ion-chevron-right" size="15px"></ons-icon></ons-button>
+                <ons-button class="btn" id="push-pic">Continue building profile  <ons-icon icon="ion-chevron-right" size="15px"></ons-icon></ons-button>
             <!--Need to write this so that it also saves form info-->
             </div> <!--LOGIN DIV-->
                     <div id="location"></div>
@@ -108,7 +108,7 @@
                                                      <!--PROFILE PICTURE PAGE-->
     <ons-template id="profilepic.html">
         <ons-page id="profilepic">
-            <ons-toolbar>
+            <ons-toolbar class="topBar">
                 <!--NAV BAR-->
                 <div class="left"><ons-back-button></ons-back-button></div>
                 <div class="center"></div>
@@ -137,16 +137,26 @@
 
     <ons-template id="peopleMap.html">
         <ons-page id="peopleMap">
+            <ons-toolbar class="topBar">
+                <div class="topBarContents">Quipa</div>
+            </ons-toolbar>
+            <div class="searching">
+               I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /><br />
 
-            Needed for <input id="hours" type="number" /> hours on <input id="workDate" type="date" /><br />
-            <div class="dropdown">
-                <button id="dropButton" class="dropbtn">Skills</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <ons-radio class="radio" input-id="hairdresser"></ons-radio><ons-icon icon="ion-scissors" size="40px"></ons-icon>
-                    <ons-radio class="radio" input-id="carpenter"></ons-radio><ons-icon icon="ion-hammer" size="40px"></ons-icon>
-                    <ons-radio class="radio" input-id="mechanic"></ons-radio><ons-icon icon="ion-wrench" size="40px"></ons-icon>
-                </div>
+                    <div id="myDropdown" class="dropdown-content">
+                        <form>
+                            <input type="radio" name="skill" value="hairdresser"><ons-icon icon="ion-scissors" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="carpenter"><ons-icon icon="ion-hammer" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="mechanic"><ons-icon icon="ion-wrench" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="accountant"><ons-icon icon="ion-calculator" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="locksmith"><ons-icon icon="ion-key" size="40px" style="padding-right:.5em;"></ons-icon>
+                            <ons-button class="btn">Search!</ons-button>
+                        </form>
+                
             </div>
+                </div>
+            
+            
 
 
 
