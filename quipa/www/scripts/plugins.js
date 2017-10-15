@@ -141,9 +141,6 @@ document.addEventListener('init', function (event) {
             });
     }
 
-   /* getWorkers(lat, long){
-    
-    } */
 
     function buildMapSearch(lat, long) {
         //set combined position for user
@@ -153,39 +150,38 @@ document.addEventListener('init', function (event) {
         var mapOptions = {
             center: latlong,
             zoom: 12,
-            zoomControl: false,
-            gestureHandling: 'none',
             mapTypeId: google.maps.MapTypeId.ROADMAP
-        }; //zoom control and gesture handling to keep map from flopping about when user is scrolling
+        }; 
         var map = new google.maps.Map(document.getElementById("search_map"), mapOptions);
         //add initial location marker
         var marker = new google.maps.Marker({ position: latlong, map: map });
         console.log("Marker has been added");
 
         var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
-        var dummylatlng = [41.867510, -87.621478];
-        var d_latlng = { lat: parseFloat(dummylatlng[0]), lng: parseFloat(dummylatlng[1]) };
-        geocoder.geocode({ 'location': d_latlng }, function (results, status) {
-            if (status === 'OK') {
-                if (results[0]) {
-                    map.setZoom(11);
-                    var marker = new google.maps.Marker({
-                        position: d_latlng,
-                        map: map
-                    });
-                    infowindow.setContent(results[0].formatted_address);
-                    infowindow.open(map, marker);
-                    marker.addListener('click', function () {
-                        console.log("Marker clicked!");
-                    });
-                } else {
-                    window.alert('No results found');
-                }
-            } else {
-                window.alert('Geocoder failed due to: ' + status);
+        
+        var dummylatlng = [[41.867510, -87.621478, "John Doe, $15/hr", 5], [41.862603, -87.614828, "Taro Tanaka, $17/hr", 6]];
+        //lat, long, prospect info, userid
+        for (i = 0; i < dummylatlng.length; i++){
+            for (k = 0; k < dummylatlng[i].length; k++){
+                var infowindow = new google.maps.InfoWindow;
+                var d_latlng = { lat: parseFloat(dummylatlng[i][0]), lng: parseFloat(dummylatlng[i][1]) };
+                var prospect = dummylatlng[i][2];
+                var userId = dummylatlng[i][3];
+                map.setZoom(13);
+                var marker = new google.maps.Marker({
+                position: d_latlng,
+                map: map
+                });
+                infowindow.setContent(prospect);
+                infowindow.open(map, marker);
+                marker.addListener('click', function () {
+                console.log("Marker clicked!");
+                document.querySelector('#Navigator').pushPage('fakeProfile.html', { date: { title: 'Fake Profile' } });
+                });
             }
-        });
+        }
+        
+        
 
     }
     
