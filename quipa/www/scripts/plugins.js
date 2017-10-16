@@ -5,6 +5,7 @@ document.addEventListener('init', function (event) {
 
     if (page.id === 'login') {
         page.querySelector('#push-button').onclick = function () {
+            getLocation();
             document.querySelector('#Navigator').pushPage('register.html', { data: { title: 'Register' } });
 
         };
@@ -12,13 +13,6 @@ document.addEventListener('init', function (event) {
             console.log("In here");
             document.querySelector('#Navigator').pushPage('peopleMap.html', { date: { title: 'Upload a profile Picture' } });
         };
-    } else if (page.id === 'register') {
-        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
-        getLocation();
-        document.querySelector("#push-pic").onclick = function () {
-            document.querySelector('#Navigator').pushPage('profilepic.html', { date: { title: 'Upload a profile Picture' } });
-        };
-      
     } else if (page.id === 'profilepic') {
         page.querySelector("#cameraPhoto").onclick = function (e) {
             e.preventDefault();

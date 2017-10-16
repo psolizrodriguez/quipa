@@ -1,146 +1,176 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>QUIPA</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsenui.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
 
-</head>
-<body>
-    <ons-navigator swipeable id="Navigator" page="login.html"></ons-navigator>
-    <!-- login -->
-    <ons-template id="login.html">
-        <ons-page id="login">
-            <!-- page toolbar -->
-            <ons-toolbar class="topBar">
-                <!--NAV BAR-->
-                <div class="left"></div>
-                <div class="center">QUIPA</div>
-                <!--Not sure how to make this less squashed looking-->
-                <div class="right">
-                    <ons-button class="btn" modifier="cta" id="push-button">
-                        Register
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>QUIPA</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsenui.css">
+            <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
+            <link rel="stylesheet" type="text/css" href="css/index.css">
+
+        </head>
+        <body>
+            <!--angular controller-->
+            <ons-navigator swipeable id="Navigator" page="login.html"></ons-navigator>
+            <!-- login -->
+            <ons-template id="login.html">
+                <ons-page id="login">
+                    <!-- page toolbar -->
+                    <ons-toolbar>
+                        <!--NAV BAR-->
+                        <div class="left"></div>
+                        <div class="center">QUIPA</div>
+                        <!--Not sure how to make this less squashed looking-->
+                        <div class="right">
+                            <ons-button id="push-button">
+                                Register
+                            </ons-button>
+                        </div>
+                    </ons-toolbar> <!--end NAV BAR-->
+                    <h3>Login</h3>
+                    <!-- homeContent - home content -->
+                    <div id="homeContent" class="page-content">
+                        <ons-list id="login">
+                            <ons-list-item>
+                                <input type="text" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                            </ons-list-item>
+                            <ons-list-item>
+                                <input type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                            </ons-list-item>
+                        </ons-list> <!--END LOGIN FORM-->
+
+                        <div class="center">
+                            <ons-button modifier="large--cta" id="btnSignIn"> <!--need to write-->
+                                Login
+                            </ons-button>
+                        </div> <!--LOGIN DIV-->
+                    </div> <!--homeContent DIV-->
+                    <br />
+                    <ons-button modifier="cta" id="push-peopleMap">
+                        Testing - People Map
                     </ons-button>
-                </div>
-            </ons-toolbar> <!--end NAV BAR-->
-            <h3>Login</h3>
-            <!-- homeContent - home content -->
-            <div id="homeContent" class="page-content">
-                <ons-list id="login">
-                    <ons-list-item>
-                        <input type="text" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                    </ons-list-item>
-                    <ons-list-item>
-                        <input type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                    </ons-list-item>
-                </ons-list> <!--END LOGIN FORM-->
+                </ons-page>
+            </ons-template> <!--END LOGIN MAIN PAGE-->
 
-                <div class="center">
-                    <ons-button class="btn" modifier="large--cta" id="btnSignIn" onclick="LogIn()"> <!--need to write-->
+            <ons-template id="register.html">
+                <ons-page id="register">
+                    <ons-toolbar>
+                        <!--NAV BAR-->
+                        <div class="left"><ons-back-button>Sign In</ons-back-button></div>
+                        <div class="center"></div>
+                        <div class="right">
+                            <ons-button onclick="moveToSkills()">Skills</ons-button>
+                        </div>
+                    </ons-toolbar> <!--end NAV BAR-->
 
-                        Login
-                    </ons-button>
-                </div> <!--LOGIN DIV-->
-                </div> <!--homeContent DIV-->
-            <br />
-            <ons-button class="btn" modifier="cta" id="push-peopleMap">
-                Testing - People Map
-            </ons-button>
-        </ons-page>
-    </ons-template> <!--END LOGIN MAIN PAGE-->
+                    <ons-list> <!--REGISTRATION FORM-->
+                        <ons-list-item>
+                            <input id="name" type="text" placeholder="Full Name" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                        </ons-list-item>
+                        <ons-list-item>
+                            <textarea id="description" type="text" placeholder="About the prospect" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;"></textarea>
+                        </ons-list-item>
 
-
-                                                         <!--REGISTRATION PAGE-->
-    <ons-template id="register.html">
-        <ons-page id="register">
-            <ons-toolbar class="topBar">
-                <!--NAV BAR-->
-                <div class="left"><ons-back-button>Sign In</ons-back-button></div>
-                <div class="center"></div>
-                <!--<div class="right">
-                    <ons-button id="push-pic">Photo</ons-button>
-                </div>-->
-                <div class="right">
-                    <ons-button onclick="createProfile()">Submit</ons-button>
-                </div>
-            </ons-toolbar> <!--end NAV BAR-->
-
-            <ons-list> <!--REGISTRATION FORM-->
-                <ons-list-item>
-                    <input id="name" type="text" placeholder="Full Name" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                </ons-list-item>
-                <ons-list-item>
-                    <textarea id="description" type="text" placeholder="About the prospect" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;"></textarea>
-                </ons-list-item>
-
-                <ons-list-item>
-                    <input id="email" type="text" placeholder="Email Address" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                </ons-list-item>
-                <ons-list-item>
-                    <input id="password" type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                </ons-list-item>
-                <ons-list-item>
-                    <input id="mobilePhoneNumber" type="text" placeholder="Phone Number" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                </ons-list-item>
-                <input id="latitude" type="hidden"/>
-                <input id="longitude" type="hidden"/>
-            </ons-list>
-            <div id="location"></div>
-            <!-- MAP CANVAS-->
-            <div id="map_canvas"></div>
-
-        </ons-page>
-    </ons-template>
-
-    <ons-template id="profilecreated.html">
-        <ons-page id="profilecreated">
-
-            <div class="center">
-                <ons-button class="btn" id="push-pic">Continue building profile  <ons-icon icon="ion-chevron-right" size="15px"></ons-icon></ons-button>
-            <!--Need to write this so that it also saves form info-->
-            </div> <!--LOGIN DIV-->
+                        <ons-list-item>
+                            <input id="email" type="text" placeholder="Email Address" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                        </ons-list-item>
+                        <ons-list-item>
+                            <input id="password" type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                        </ons-list-item>
+                        <ons-list-item>
+                            <input id="mobilePhoneNumber" type="text" placeholder="Phone Number" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                        </ons-list-item>
+                        <input id="latitude" type="hidden"/>
+                        <input id="longitude" type="hidden"/>
+                    </ons-list>
                     <div id="location"></div>
                     <!-- MAP CANVAS-->
                     <div id="map_canvas"></div>
-                <ons-button onclick="backToLogin()">Profile Created!</ons-button>
 
-        </ons-page>
-    </ons-template>
+                </ons-page>
+            </ons-template>
+            <ons-template id="skills.html">
+                <ons-page id="skills">
+                    <ons-toolbar>
+                        <!--NAV BAR-->
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Skills</div>
+                        <div class="right">
+                            <ons-button onclick="moveToProfilePicture()">Photo</ons-button>
+                        </div>
+                    </ons-toolbar> <!--end NAV BAR-->
+                    <div class="skillsContainer">
+                        <div class="center">
+                            <img id="skill_1" onclick="addToSkills(1)" class="skills" src="images/computer.png"/>
+                            <img id="skill_2" onclick="addToSkills(2)" class="skills" src="images/cooker.png"/>
+                            <img id="skill_3" onclick="addToSkills(3)" class="skills" src="images/hair_stylist.png"/>
+                        </div>
+                        <div class="center">
+                            <img id="skill_4" onclick="addToSkills(4)" class="skills" src="images/handyman.png"/>
+                            <img id="skill_5" onclick="addToSkills(5)" class="skills" src="images/mechanic.png"/>
+                            <img id="skill_6" onclick="addToSkills(6)" class="skills" src="images/painter.png"/>
+                        </div>
+                        <div class="center">
+                            <img id="skill_7" onclick="addToSkills(7)" class="skills" src="images/telephonist.png"/>
+                            <img id="skill_8" onclick="addToSkills(8)" class="skills" src="images/tutor.png"/>
+                            <img id="skill_9" onclick="addToSkills(9)" class="skills" src="images/waitress.png"/>
+                        </div>
+                        <div class="center">
+                            <img id="skill_10" onclick="addToSkills(10)" class="skills" src="images/window_cleaner.png"/>
+                        </div>
+                    </div>
+                    <input id="skills" type="hidden" value="" />
+                </ons-page>
+            </ons-template>
+            <ons-template id="profilepic.html">
+                <ons-page id="profilepic">
+                    <ons-toolbar>
+                        <!--NAV BAR-->
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center"></div>
+                        <div class="right">
+                            <ons-button onclick="createProfile()">Submit</ons-button>
+                        </div>
+                    </ons-toolbar> <!--end NAV BAR-->
 
-                                                     <!--PROFILE PICTURE PAGE-->
-    <ons-template id="profilepic.html">
-        <ons-page id="profilepic">
-            <ons-toolbar class="topBar">
-                <!--NAV BAR-->
-                <div class="left"><ons-back-button></ons-back-button></div>
-                <div class="center"></div>
-                <div class="right"></div>
-            </ons-toolbar> <!--end NAV BAR-->
+                    <!--PHOTO OPTIONS-->
 
-            <!--PHOTO OPTIONS-->
+                    <ons-bottom-toolbar id="bottombar">Upload Profile Picture</ons-bottom-toolbar>
+                    <ons-speed-dial position="bottom right" direction="up">
+                        <ons-fab id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
+                        <ons-speed-dial-item>
+                            <ons-icon id="cameraPhoto" icon="ion-camera" size="32px"></ons-icon>
+                        </ons-speed-dial-item>
+                        <ons-speed-dial-item>
+                            <ons-icon id="galleryPhoto" icon="ion-images" size="32px"></ons-icon>
+                        </ons-speed-dial-item>
+                    </ons-speed-dial>
 
 
-            <ons-bottom-toolbar class="bottombar">Upload Profile Picture</ons-bottom-toolbar>
-                <ons-speed-dial position="bottom right" direction="up">
-                    <ons-fab id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
-                    <ons-speed-dial-item>
-                        <ons-icon id="cameraPhoto" icon="ion-camera" size="32px"></ons-icon>
-                    </ons-speed-dial-item>
-                    <ons-speed-dial-item>
-                        <ons-icon id="galleryPhoto" icon="ion-images" size="32px"></ons-icon>
-                    </ons-speed-dial-item>
-                </ons-speed-dial>
+                    <div id="photo">
+                        <img id="imageView"/><br />Profile Picture
+                    </div><!-- /photo preview -->
 
-            <div id="photo">
-                <img id="imageView"/><br />Profile Picture
-            </div><!-- /photo preview -->
+                </ons-page>
+            </ons-template>
 
-        </ons-page>
-    </ons-template>
+            <ons-template id="profilecreated.html">
+                <ons-page id="profilecreated">
+                    <ons-list> <!--REGISTRATION FORM-->
+                        <ons-list-item>
+                            <a href="#"><img height="40" width="40md" src="http://xiostorage.com/wp-content/uploads/2015/10/test.png"  data-rel="external"/></a>
+                        </ons-list-item>
+                        <ons-list-item>
+                         <div class="center">
+                            <ons-button onclick="backToLogin()">Profile Created!</ons-button>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
 
-    <ons-template id="peopleMap.html">
+            </ons-page>
+        </ons-template>
+
+ <ons-template id="peopleMap.html">
         <ons-page id="peopleMap">
             <ons-toolbar class="topBar">
                 <div class="topBarContents">Quipa</div>
@@ -160,11 +190,6 @@
                 
             </div>
                 </div>
-            
-            
-
-
-
         <div id="searchLocation"></div>
         <div id="latlng"></div>
         <!-- MAP CANVAS-->
@@ -180,21 +205,21 @@
         </ons-page>
     </ons-template>
 
-    <ons-template id="fakeProfile.html">
-        <ons-page id="fakeProfile">
-            <p>You made it to a fake profile by clicking a marker!</p>
+        <ons-template id="fakeProfile.html">
+            <ons-page id="fakeProfile">
+                <p>You made it to a fake profile by clicking a marker!</p>
 
-        </ons-page>
-    </ons-template>
+            </ons-page>
+        </ons-template>
 
-    <!--SCRIPTS-->
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyByWZWszhkQu3a_jQGY8qSqHQpdzv8RRGQ" type="text/javascript"></script>
-    <script src="scripts/plugins.js"></script>
-     <script type="text/javascript" src="scripts/indexeddb-script.js"></script>
-    <script type="text/javascript" src="scripts/index.js"></script>
+        <!--SCRIPTS-->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
+        <script src="http://maps.google.com/maps/api/js?key=AIzaSyByWZWszhkQu3a_jQGY8qSqHQpdzv8RRGQ" type="text/javascript"></script>
+        <script src="scripts/plugins.js"></script>
+        <script type="text/javascript" src="scripts/indexeddb-script.js"></script>
+        <script type="text/javascript" src="scripts/index.js"></script>
 
 
-</body>
-</html>
+    </body>
+    </html>
