@@ -24,3 +24,24 @@ html, body {
 #bottombar {
     background-color: aquamarine;
 }
+.skills {
+	height:70px; 
+ 	width:70px;
+ 	margin: 20px 20px 20px 20px;
+
+}
+.skillsSelected{
+	height:70px; 
+ 	width:70px;
+ 	margin: 20px 20px 20px 20px;
+ 	box-shadow:0px 12px 22px 1px #333;
+ 	opacity: .5;
+}
+.center{
+	text-align:center;
+	width: 100%;
+}
+#push-button{
+	width: 150px;
+	text-align: left;
+}
