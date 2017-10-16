@@ -26,6 +26,32 @@ document.addEventListener('init', function (event) {
 
     } else if (page.id === 'peopleMap') {
         getSearcherLocation();
+
+        page.querySelector("#dropButton").onclick = function () {
+            toggleDrop();
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function (event) {
+                if (!event.target.matches('.dropbtn')){
+
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        }
+        
+
+    }
+
+    //SKILL TOGGLE FOR SEARCH PAGE
+    function toggleDrop() {
+        console.log("Toggled list");
+        document.getElementById("myDropdown").classList.toggle("show");
     }
 
 
@@ -112,13 +138,7 @@ document.addEventListener('init', function (event) {
         var locationTime = Date(location.timestamp);
         var lat = location.coords.latitude;
         var long = location.coords.longitude;
-        //output result to #location div...
-        var locationDiv = document.getElementById("searchLocation");
-        locationDiv.innerHTML = "<p>You are at: " + lat + " latitude </p><p>and " + long + " longitude</p>";
         //build map with current latitude and longitude
-
-      //  geocodeLatLng(geocoder, map, infowindow);
-       // getWorkers(lat, long);
         buildMapSearch(lat, long);
     }
 

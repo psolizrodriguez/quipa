@@ -1,4 +1,5 @@
-﻿        <!DOCTYPE html>
+
+        <!DOCTYPE html>
         <html>
         <head>
             <title>QUIPA</title>
@@ -165,18 +166,44 @@
                         </ons-list-item>
                     </ons-list>
                 </div>
-            </ons-page>
-        </ons-template>
-
-        <ons-template id="peopleMap.html">
-            <ons-page id="peopleMap">
-                <div id="searchLocation"></div>
-                <div id="latlng"></div>
-                <!-- MAP CANVAS-->
-                <div id="search_map"></div>
 
             </ons-page>
         </ons-template>
+
+ <ons-template id="peopleMap.html">
+        <ons-page id="peopleMap">
+            <ons-toolbar class="topBar">
+                <div class="topBarContents">Quipa</div>
+            </ons-toolbar>
+            <div class="searching">
+               I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /><br />
+
+                    <div id="myDropdown" class="dropdown-content">
+                        <form>
+                            <input type="radio" name="skill" value="hairdresser"><ons-icon icon="ion-scissors" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="carpenter"><ons-icon icon="ion-hammer" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="mechanic"><ons-icon icon="ion-wrench" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="accountant"><ons-icon icon="ion-calculator" size="40px"></ons-icon>
+                            <input type="radio" name="skill" value="locksmith"><ons-icon icon="ion-key" size="40px" style="padding-right:.5em;"></ons-icon>
+                            <ons-button class="btn">Search!</ons-button>
+                        </form>
+                
+            </div>
+                </div>
+        <div id="searchLocation"></div>
+        <div id="latlng"></div>
+        <!-- MAP CANVAS-->
+        <div id="search_map"></div>
+
+            <ons-bottom-toolbar class="bottombar">
+                    <ons-toolbar-button class="currentPage"><ons-icon icon="ion-ios-search-strong" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-star" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-person-stalker" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-email" size="40px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-person" size="40px"></ons-icon></ons-toolbar-button>
+            </ons-bottom-toolbar>
+        </ons-page>
+    </ons-template>
 
         <ons-template id="fakeProfile.html">
             <ons-page id="fakeProfile">
