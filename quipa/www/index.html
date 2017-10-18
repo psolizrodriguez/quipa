@@ -30,10 +30,10 @@
             <div id="homeContent" class="page-content">
                 <ons-list id="login">
                     <ons-list-item>
-                        <input type="text" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                        <input type="text" id="username" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
                     </ons-list-item>
                     <ons-list-item>
-                        <input type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                        <input type="password" id="login-pass" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
                     </ons-list-item>
                 </ons-list> <!--END LOGIN FORM-->
 
@@ -63,26 +63,33 @@
                     <ons-button id="push-pic">Photo</ons-button>
                 </div>-->
                 <div class="right">
-                    <ons-button onclick="createProfile()">Submit</ons-button>
+                    <ons-button class="btn" onclick="createProfile()">Submit</ons-button>
                 </div>
             </ons-toolbar> <!--end NAV BAR-->
 
             <ons-list> <!--REGISTRATION FORM-->
-                <ons-list-item>
+                <ons-list-item>  <!--NAME-->
                     <input id="name" type="text" placeholder="Full Name" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
                 </ons-list-item>
-                <ons-list-item>
+
+                <ons-list-item> <!--ABOUT-->
                     <textarea id="description" type="text" placeholder="About the prospect" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;"></textarea>
                 </ons-list-item>
 
-                <ons-list-item>
+                <ons-list-item> <!--EMAIL-->
                     <input id="email" type="text" placeholder="Email Address" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
                 </ons-list-item>
-                <ons-list-item>
-                    <input id="password" type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+
+                <ons-list-item> <!--PIN-->
+                    <input id="password" type="password" placeholder="Account PIN" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
                 </ons-list-item>
-                <ons-list-item>
+
+                <ons-list-item> <!--PHONE NUMBER-->
                     <input id="mobilePhoneNumber" type="text" placeholder="Phone Number" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                </ons-list-item>
+
+                <ons-list-item><!--USERNAME-->
+                    <input id="username" type="text" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
                 </ons-list-item>
                 <input id="latitude" type="hidden"/>
                 <input id="longitude" type="hidden"/>
@@ -104,7 +111,7 @@
                     <div id="location"></div>
                     <!-- MAP CANVAS-->
                     <div id="map_canvas"></div>
-                <ons-button onclick="backToLogin()">Profile Created!</ons-button>
+                <ons-button class="btn" onclick="backToLogin()">Profile Created!</ons-button>
 
         </ons-page>
     </ons-template>

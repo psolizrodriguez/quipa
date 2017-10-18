@@ -26,6 +26,14 @@ function backToLogin(){
     document.querySelector('#Navigator').pushPage('login.html', { data: { title: 'Quipa' } });
 }
 
+function LogIn() {
+    var user = {
+        "username": document.getElementById('username').value,
+        "password": document.getElementById('login-pass').value
+    }
+    console.log(user);
+}
+
 
 function createProfile(){
     var profile = {

@@ -33,25 +33,6 @@ document.addEventListener('init', function (event) {
     } else if (page.id === 'peopleMap') {
         getSearcherLocation();
 
-        page.querySelector("#dropButton").onclick = function () {
-            toggleDrop();
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function (event) {
-                if (!event.target.matches('.dropbtn')){
-
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-        }
-        
-
     }
 
     //SKILL TOGGLE FOR SEARCH PAGE
@@ -178,6 +159,42 @@ document.addEventListener('init', function (event) {
         console.log("Marker has been added");
 
         var geocoder = new google.maps.Geocoder;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile");
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onload = function () {
+            try {
+                if (this.status === 200) {
+                    var data = JSON.parse(this.response);
+                    var newContent = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var record = data[i];
+                        if (record['profileId'] === 30) {
+                            newContent.push(record['latitude']);
+                            newContent.push(record['latitude']);
+                            newContent.push(record['name'] + ', ' + record['description'] + ' Charges $' + record['priceHour'] + ' per hour');
+                            newContent.push(record['profileId']);
+                            newContent.push('https://i.imgur.com/KrIHCD2.png');
+                        }
+                        
+                    }
+                    console.log(newContent);
+                } else {
+                    console.log(this.status + " " + this.statusText);
+                }
+            } catch (e) {
+                console.log(e.message);
+            }
+        };
+
+        xhr.onerror = function () {
+            console.log(this.status + " " + this.statusText);
+        };
+
+        xhr.send();
+
+
         
         var dummylatlng = [[41.867510, -87.621478, "John Doe, $15/hr", 5, 'https://i.imgur.com/uqvXllH.png'], [41.862603, -87.614828, "Taro Tanaka, $17/hr", 6, 'https://i.imgur.com/KrIHCD2.png']];
         //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
