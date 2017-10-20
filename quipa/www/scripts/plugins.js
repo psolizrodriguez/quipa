@@ -18,7 +18,7 @@ document.addEventListener('init', function (event) {
         document.querySelector("#push-pic").onclick = function () {
             document.querySelector('#Navigator').pushPage('profilepic.html', { date: { title: 'Upload a profile Picture' } });
         };
-      
+
     } else if (page.id === 'profilepic') {
         page.querySelector("#cameraPhoto").onclick = function (e) {
             e.preventDefault();
@@ -152,14 +152,14 @@ document.addEventListener('init', function (event) {
             center: latlong,
             zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP
-        }; 
+        };
         var map = new google.maps.Map(document.getElementById("search_map"), mapOptions);
         //add initial location marker
         var marker = new google.maps.Marker({ position: latlong, map: map });
         console.log("Marker has been added");
 
         var geocoder = new google.maps.Geocoder;
-
+        var prospects = [];
         const xhr = new XMLHttpRequest();
         xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile");
         xhr.setRequestHeader("Accept", "application/json");
@@ -167,19 +167,48 @@ document.addEventListener('init', function (event) {
             try {
                 if (this.status === 200) {
                     var data = JSON.parse(this.response);
-                    var newContent = [];
+
                     for (var i = 0; i < data.length; i++) {
                         var record = data[i];
-                        if (record['profileId'] >= 27 && record['profileId'] <= 30) {
-                            newContent.push(record['latitude']);
-                            newContent.push(record['latitude']);
-                            newContent.push(record['name'] + ', ' + record['description'] + ' Charges $' + record['priceHour'] + ' per hour');
-                            newContent.push(record['profileId']);
-                            newContent.push('https://i.imgur.com/KrIHCD2.png');
+                        if (record['profileId'] === 30 || record['profileId'] === 7 || record['profileId'] === 23) {
+                            var newContent = [];
+                            newContent.push(record['latitude']); //0
+                            newContent.push(record['longitude']); //1
+                            newContent.push(record['name']); //2
+                            newContent.push(record['description']); //3
+                            newContent.push(record['priceHour']); //4
+                            newContent.push(record['profileId']); //5
+                            newContent.push('https://i.imgur.com/KrIHCD2.png'); //6
+                            prospects.push(newContent);
+                            console.log("Pulling matching content from DB");
                         }
-                        
+
                     }
-                    console.log(newContent);
+
+                    console.log(prospects);
+
+                    //lat, long, prospect info, userid, profilepic
+                    for (i = 0; i < prospects.length; i++) {
+                            var infowindow = new google.maps.InfoWindow;
+                            var d_latlng = { lat: parseFloat(prospects[i][0]), lng: parseFloat(prospects[i][1]) };
+                            console.log(d_latlng);
+                            var prospect = prospects[i][2] + " is a  " + prospects[i][3] + " changing $" + prospects[i][4] + " per hour";
+                            console.log(prospect);
+                            var userId = prospects[i][5];
+                            var profilePic = prospects[i][6];
+                            map.setZoom(13);
+                            var marker = new google.maps.Marker({
+                                position: d_latlng,
+                                icon: profilePic,
+                                map: map
+                            });
+                            infowindow.setContent(prospect);
+                            infowindow.open(map, marker);
+                            marker.addListener('click', function () {
+                                console.log("Marker clicked!");
+                                document.querySelector('#Navigator').pushPage('fakeProfile.html', { date: { title: 'Fake Profile' } });
+                            });
+                        }
                 } else {
                     console.log(this.status + " " + this.statusText);
                 }
@@ -195,38 +224,16 @@ document.addEventListener('init', function (event) {
         xhr.send();
 
 
-        
+
         //var dummylatlng = [[41.867510, -87.621478, "John Doe, $15/hr", 5, 'https://i.imgur.com/uqvXllH.png'], [41.862603, -87.614828, "Taro Tanaka, $17/hr", 6, 'https://i.imgur.com/KrIHCD2.png']];
         //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
-        //lat, long, prospect info, userid, profilepic
-        //NEW CONTENT IS NOT DEFINED
-        for (i = 0; i < newContent.length; i++){
-            for (k = 0; k < newContent[i].length; k++){
-                var infowindow = new google.maps.InfoWindow;
-                var d_latlng = { lat: parseFloat(newContent[i][0]), lng: parseFloat(newContent[i][1]) };
-                var prospect = newContent[i][2];
-                var userId = newContent[i][3];
-                var profilePic = newContent[i][4];
-                map.setZoom(13);
-                var marker = new google.maps.Marker({
-                    position: d_latlng,
-                    icon: profilePic,
-                    map: map
-                });
-                infowindow.setContent(prospect);
-                infowindow.open(map, marker);
-                marker.addListener('click', function () {
-                console.log("Marker clicked!");
-                document.querySelector('#Navigator').pushPage('fakeProfile.html', { date: { title: 'Fake Profile' } });
-                });
-            }
-        }
-        
-        
+
+
+
 
     }
-    
+
 
 
 });
