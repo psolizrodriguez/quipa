@@ -12,11 +12,15 @@ html, body {
     margin-bottom: 10px;
 }
 
+#lognbtn {
+  margin-left: 40%;
+}
+
 .btn {
-    background-color: #775258;
+    background-color: #58373C;
 }
 .bottom-bar{
-	  background-color: #775258;
+	  background-color: #58373C;
 }
 
 #search_map{
@@ -112,8 +116,13 @@ html, body {
 }
 
 .searching {
-    background-color: #83c8f7;
+    background-color: #58373C;
 }
+
+#searchText {
+  color: white;
+}
+
 .page__background{
 	background:url(../images/background2.jpg) center top;
 	background-size: cover;
@@ -143,4 +152,8 @@ html, body {
 }
 .formDivision{
 	width: 100%;
+}
+
+.tab-bar {
+  background-color: #58373C;
 }
