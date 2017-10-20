@@ -13,10 +13,10 @@ html, body {
 }
 
 .btn {
-    background-color: #775258;
+    background-color: #58373C;
 }
 .bottom-bar{
-	  background-color: #775258;
+	  background-color: #58373C;
 }
 
 #search_map{
@@ -112,7 +112,7 @@ html, body {
 }
 
 .searching {
-    background-color: #83c8f7;
+    background-color: #58373C;
 }
 .page__background{
 	background:url(../images/background2.jpg) center top;
@@ -143,4 +143,8 @@ html, body {
 }
 .formDivision{
 	width: 100%;
+}
+
+#appTabbar {
+  background-color: #58373C;
 }

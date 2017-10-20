@@ -21,7 +21,7 @@ document.addEventListener('init', function (event) {
 
     } else if (page.id === 'peopleMap') {
         getSearcherLocation();
-    
+
     /*Percy*/
     } else if (page.id === 'profile') {
         console.log('profile');
@@ -29,10 +29,10 @@ document.addEventListener('init', function (event) {
     /*Percy*/
     /*Pinky*/
     }else if (page.id === 'profileHire') {
-         
+
       var modal = document.querySelector('ons-modal');
       modal.show();
-        
+
     }else if (page.id === 'profileSend') {
 
         var skillObj = {
@@ -88,10 +88,10 @@ document.addEventListener('init', function (event) {
 
 
     }else if (page.id == "requestHired") {
-    
+
           var modal = document.querySelector('ons-modal');
           modal.show();
-                          
+
     }
 
     /*Pinky*/
@@ -165,7 +165,7 @@ document.addEventListener('init', function (event) {
         if (camera === true) {
             //Use from Camera
             navigator.camera.getPicture(onSuccessImage, onFailImage, {
-                quality: 30,
+                quality: 10,
                 correctOrientation: true,
                 sourceType: Camera.PictureSourceType.CAMERA,
                 destinationType: Camera.DestinationType.FILE_URI
@@ -298,7 +298,7 @@ document.addEventListener('init', function (event) {
 
 
    });
-   
+
 /*Pinky*/
 document.addEventListener('show', function(event) {
   var page = event.target;
@@ -421,10 +421,10 @@ document.addEventListener('show', function(event) {
         xhr.send();
 
     }else if (page.id === 'profileHire') {
-                      
+
       var modal = document.querySelector('ons-modal');
       modal.show();
-                          
+
       var prospectId = document.getElementById('prospectIdProfileHire').value;
 
       var xhr = new XMLHttpRequest();
@@ -432,12 +432,12 @@ document.addEventListener('show', function(event) {
       xhr.setRequestHeader("Accept", "application/json");
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onload = function() {
-                          
+
           modal.hide();
           try {
               if (this.status === 200) {
                   $('#star').raty({ 'score': 4, 'readonly': true });
-                          
+
                   numReviews = 20;
                   var data = JSON.parse(this.response);
                   document.getElementById('priceHoursProfileHire').value = data.priceHour;
@@ -468,7 +468,7 @@ document.addEventListener('show', function(event) {
                       }
                   }
               }
-      
+
           } catch (e) {
               console.log(e.message);
           }
