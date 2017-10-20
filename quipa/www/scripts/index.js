@@ -104,14 +104,63 @@ app.initialize();
 
 /*Pinky*/
 function profileToHire(){
-    document.querySelector('#Navigator').pushPage('profileHire.html', { date: { title: 'Hiring a Profile' } });
+    document.querySelector('#Navigator').pushPage('profileHire.html', { data: { title: 'Hiring a Profile' } });
 }
 
 function profileToSend() {
-    document.querySelector('#Navigator').pushPage('profileSend.html', { date: { title: 'Hiring a Profile' } });
+    document.querySelector('#Navigator').pushPage('profileSend.html', { data: { title: 'Hiring a Profile' } });
 }
 
 function confirmProfile() {
-    document.querySelector('#Navigator').pushPage('tabbar.html', {data: {title: 'My Requests'}});
+    
+    var profileId = 39;
+    
+    var hours = document.getElementById('noOfHours').value;
+    var date = document.getElementById('dateOfRequest').value;
+    var prospectId = document.getElementById('prospectIdProfileHire').value;
+    var priceHour = document.getElementById('priceHoursProfileHire').value;
+    var skillId = "[2]";
+    var request = {
+        "date": date,
+        "fromHour": document.getElementById('fromTime').value,
+        "toHour": document.getElementById('toTime').value,
+        "hours": hours,
+        "priceHour": priceHour,
+        "subTotal": priceHour * hours,
+        "taxes": priceHour * hours * 0.1,
+        "transportation": priceHour * hours * 0.05,
+        "total": (priceHour * hours) + (priceHour * hours * 0.1) + (priceHour * hours * 0.05),
+        "requiredSkill": skillId,
+        "jobTitle": "",
+        "description":"",
+        "profileId": profileId,
+        "prospectId": prospectId
+    }
+    console.log(request);
+    const xhr = new XMLHttpRequest();
+    
+    xhr.open("POST", "http://18.220.231.8:8080/QuipaServer/services/requestservice/request/");
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    
+    xhr.onload = function() {
+        try {
+            if (this.status === 200) {
+                var data = JSON.parse(this.response);
+                console.log(data);
+                document.querySelector('#Navigator').pushPage('tabbar.html', {data: {title: 'My Requests'}});
+                
+            } else {
+                console.log(this.status + " " + this.statusText);
+            }
+        } catch (e) {
+            console.log(e.message);
+        }
+    };
+    
+    xhr.onerror = function() {
+        console.log(this.status + " " + this.statusText);
+    };
+    xhr.send(JSON.stringify(request));
 }
 /*Pinky*/
