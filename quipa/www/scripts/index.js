@@ -25,17 +25,29 @@ var app = {
 function backToLogin(){
     document.querySelector('#Navigator').pushPage('login.html', { data: { title: 'Quipa' } });
 }
-
-function LogIn() {
-    var user = {
-        "username": document.getElementById('username').value,
-        "password": document.getElementById('login-pass').value
-    }
-    console.log(user);
+function moveToProfilePicture(){
+    document.querySelector('#Navigator').pushPage('profilepic.html', { data: { title: 'Profile Picture' } });
 }
-
-
+function moveToSkills(){
+    document.querySelector('#Navigator').pushPage('skills.html', { data: { title: 'Skills' } });
+}
+function addToSkills(skillId){
+    var skills = document.getElementById('skills').value;
+    if(typeof skills === 'undefined'){
+        skills = '';
+    }
+    if(document.getElementById("skill_"+skillId).className == "skillsSelected"){
+        document.getElementById("skill_"+skillId).className = "skills";
+        skills = skills.replace('[' + skillId + ']','');
+    }else{
+        document.getElementById("skill_"+skillId).className = "skillsSelected"
+        skills = skills + '[' + skillId+']';
+    }
+    document.getElementById('skills').value = skills;
+    console.log(skills);
+}
 function createProfile(){
+
     var profile = {
         "name": document.getElementById('name').value,
         "description": document.getElementById('description').value,
@@ -45,7 +57,7 @@ function createProfile(){
         "mobilePhoneNumber": document.getElementById('mobilePhoneNumber').value,
         "latitude": document.getElementById('latitude').value,
         "longitude": document.getElementById('longitude').value,
-        "skills": ""
+        "skills": document.getElementById('skills').value
     }
     console.log(profile);
     const xhr = new XMLHttpRequest();
@@ -73,3 +85,17 @@ function createProfile(){
 }
 
 app.initialize();
+
+/*Pinky*/
+function profileToHire(){
+    document.querySelector('#Navigator').pushPage('profileHire.html', { date: { title: 'Hiring a Profile' } });
+}
+
+function profileToSend() {
+    document.querySelector('#Navigator').pushPage('profileSend.html', { date: { title: 'Hiring a Profile' } });
+}
+
+function confirmProfile() {
+    document.querySelector('#Navigator').pushPage('tabbar.html', {data: {title: 'My Requests'}});
+}
+/*Pinky*/

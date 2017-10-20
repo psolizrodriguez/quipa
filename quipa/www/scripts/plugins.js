@@ -1,10 +1,11 @@
-﻿
+
 
 document.addEventListener('init', function (event) {
     var page = event.target;
 
     if (page.id === 'login') {
         page.querySelector('#push-button').onclick = function () {
+            getLocation();
             document.querySelector('#Navigator').pushPage('register.html', { data: { title: 'Register' } });
 
         };
@@ -12,13 +13,6 @@ document.addEventListener('init', function (event) {
             console.log("In here");
             document.querySelector('#Navigator').pushPage('peopleMap.html', { date: { title: 'Upload a profile Picture' } });
         };
-    } else if (page.id === 'register') {
-        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
-        getLocation();
-        document.querySelector("#push-pic").onclick = function () {
-            document.querySelector('#Navigator').pushPage('profilepic.html', { date: { title: 'Upload a profile Picture' } });
-        };
-
     } else if (page.id === 'profilepic') {
         page.querySelector("#cameraPhoto").onclick = function (e) {
             e.preventDefault();
@@ -33,7 +27,38 @@ document.addEventListener('init', function (event) {
     } else if (page.id === 'peopleMap') {
         getSearcherLocation();
 
+
+        
+
     }
+    /*Pinky*/
+    else if (page.id === 'profileHire') {
+         
+      var modal = document.querySelector('ons-modal');
+      modal.show();
+        
+    }
+    else if (page.id === 'profileSend') {
+
+        var date = new Date();
+
+        var currentHours = date.getHours();
+        currentHours = ("0" + currentHours).slice(-2);
+
+        var currentMinutes = date.getMinutes();
+        currentMinutes = ("0" + currentMinutes).slice(-2);
+
+        $('#fromTime').val(currentHours + ':' + currentMinutes);
+        $('#toTime').val(currentHours + ':' + currentMinutes);
+
+    }else if (page.id == "requestHired") {
+    
+          var modal = document.querySelector('ons-modal');
+          modal.show();
+                          
+     }
+      
+    /*Pinky*/
 
     //SKILL TOGGLE FOR SEARCH PAGE
     function toggleDrop() {
@@ -183,57 +208,166 @@ document.addEventListener('init', function (event) {
                             console.log("Pulling matching content from DB");
                         }
 
-                    }
-
-                    console.log(prospects);
-
-                    //lat, long, prospect info, userid, profilepic
-                    for (i = 0; i < prospects.length; i++) {
-                            var infowindow = new google.maps.InfoWindow;
-                            var d_latlng = { lat: parseFloat(prospects[i][0]), lng: parseFloat(prospects[i][1]) };
-                            console.log(d_latlng);
-                            var prospect = prospects[i][2] + " is a  " + prospects[i][3] + " changing $" + prospects[i][4] + " per hour";
-                            console.log(prospect);
-                            var userId = prospects[i][5];
-                            var profilePic = prospects[i][6];
-                            map.setZoom(13);
-                            var marker = new google.maps.Marker({
-                                position: d_latlng,
-                                icon: profilePic,
-                                map: map
-                            });
-                            infowindow.setContent(prospect);
-                            infowindow.open(map, marker);
-                            marker.addListener('click', function () {
-                                console.log("Marker clicked!");
-                                document.querySelector('#Navigator').pushPage('fakeProfile.html', { date: { title: 'Fake Profile' } });
-                            });
-                        }
-                } else {
-                    console.log(this.status + " " + this.statusText);
-                }
-            } catch (e) {
-                console.log(e.message);
-            }
-        };
-
-        xhr.onerror = function () {
-            console.log(this.status + " " + this.statusText);
-        };
-
-        xhr.send();
-
-
-
-        //var dummylatlng = [[41.867510, -87.621478, "John Doe, $15/hr", 5, 'https://i.imgur.com/uqvXllH.png'], [41.862603, -87.614828, "Taro Tanaka, $17/hr", 6, 'https://i.imgur.com/KrIHCD2.png']];
-        //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-
-
-
-
+        
+        
 
     }
+    
 
 
+});
 
+document.addEventListener('show', function(event) {
+  var page = event.target;
+  
+  if (page.id == "requestHired") {
+      
+      var modal = document.querySelector('ons-modal');
+      modal.show();
+                          
+      var profileId = 1;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/requestservice/request?profileId="+profileId);
+      xhr.setRequestHeader("Accept", "application/json");
+      
+      xhr.onload = function() {
+                          
+          modal.hide();
+          try {
+              if (this.status === 200) {
+                  
+                  var data = JSON.parse(this.response);
+                  console.log(JSON.stringify(data));
+                          
+                          
+                  var element = document.getElementById("myrequestContent");
+                  element.innerHTML = '';
+                          
+                  for(var i=0; i< data.length; i++) {
+                          
+                      var currentItem = data[i];
+                      var statusColor = "green";
+                      if(currentItem['status'].toLowerCase() === 'pending') {
+                          statusColor = "orange";
+                      }
+                          
+                      element.appendChild(ons.createElement(
+                                                            '<ons-list-item>' +
+                                                            '<div class="center">' +
+                                                            '<div style="width:100%;">' +
+                                                            '<span style="float:left;line-height: 50px;font-size:18px;font-weight:bold;">Kelly Blackwell</span>' +
+                                                            '</div>' +
+                                                            '<div style="width:100%;">' +
+                                                            '<img src="http://placekitten.com/g/30/30" style="float:left;">' +
+                                                            '<span style="float:left;margin-left:20px;line-height: 30px;font-size:18px;font-weight:bold;">for '+ currentItem['hours'] +' hours</span>' +
+                                                            '</div>' +
+                                                            '<div  style="width:100%;height:40px;">' +
+                                                            '<span style="float:left;font-size:20px;line-height: 40px;">on </span>' +
+                                                            '<span style="float:right;padding-right:20px;font-size:18px;line-height: 40px;font-weight:bold;">10-19-2017</span>' +
+                                                            '</div><br/><br/>' +
+                                                            '<div  style="width:100%;height:30px;">' +
+                                                            '<span style="float:left;font-size:20px;line-height: 30px;">from</span>' +
+                                                            '<span style="float:right;font-weight:bold;font-size:18px;padding-right:20px;">'+ currentItem['fromHour'] +'</span>' +
+                                                            '</div><br/><br/>' +
+                                                            '<div  style="width:100%;height:30px;">' +
+                                                            '<span style="float:left;font-size:20px;line-height: 30px;">to</span>' +
+                                                            '<span style="float:right;font-weight:bold;font-size:18px;padding-right:20px;">'+ currentItem['toHour'] +'</span>' +
+                                                            '</div><br/><br/>' +
+                                                            '<div  style="width:100%;height:30px;">' +
+                                                            '<span style="float:left;font-size:20px;line-height: 30px;">Total</span>' +
+                                                            '<span style="float:right;font-weight:bold;font-size:18px;padding-right:20px;">$'+ currentItem['total'] +'</span>' +
+                                                            '</div>' +
+                                                            '</div>' +
+                                                            '<div class="right">' +
+                                                            '<div style="float:left;width:120px;">' +
+                                                            '<img src="http://placekitten.com/g/120/120" />' +
+                                                            '<br clear="all"/><br clear="all"/>' +
+                                                            '<div style="float:left;width:100%;">' +
+                                                            '<ons-button onclick="" modifier="large" style="background:' + statusColor +';">'+ currentItem['status'] +'</ons-button>' +
+                                                            '</div>' +
+                                                            '</div>' +
+                                                            '</div>' +
+                                                            '</ons-list-item>'
+                                                            ));
+                          
+                  }
+              }
+          } catch (e) {
+              console.log(e.message);
+          }
+      };
+      xhr.onerror = function() {
+          modal.hide();
+          console.log(this.status + " " + this.statusText);
+      };
+      xhr.send();
+                          
+  }else if (page.id === 'profileHire') {
+                      
+      var modal = document.querySelector('ons-modal');
+      modal.show();
+                          
+      var profileId = 37;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile/"+profileId);
+      xhr.setRequestHeader("Accept", "application/json");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onload = function() {
+                          
+          modal.hide();
+          try {
+              if (this.status === 200) {
+                  $('#star').raty({ 'score': 4, 'readonly': true });
+                          
+                  numReviews = 20;
+                  var data = JSON.parse(this.response);
+                  document.getElementById('numReviews').innerHTML = numReviews + " Reviews";
+                  document.getElementById('profileName').innerHTML = data.name;
+                  document.getElementById('profileDescription').innerHTML = data.description;
+                  var profileImage = document.getElementById('profileImage');
+                  profileImage.setAttribute('src', data.profilePicture);
+                  var parentDiv = document.getElementById('thumbs');
+                  
+                  var hourlyRate = document.getElementById('hourlyRate');
+                  hourlyRate.innerHTML =  "$" + data.priceHour;
+                  hourlyRate.setAttribute('style', 'text-align:left;font-size:5;font-weight:bold');
+      
+                  var obj = {
+                              1: "images/computer.png",
+                              2: "images/cooker.png",
+                              3: "images/hair_stylist.png",
+                              4: "images/handyman.png",
+                              5: "images/mechanic.png",
+                              6: "images/painter.png",
+                              7: "images/telephonist.png",
+                              8: "images/tutor.png",
+                              9: "images/waitress.png"
+      
+                              };
+                  var skillnum = data.skills.length/3;
+                  if (skillnum !=0){
+                      var num = 1;
+                      for(i=1; i<=skillnum; i++){
+                          var ahref = document.createElement("a");
+                          ahref.setAttribute('href', '#');
+                          var img = document.createElement("img");
+                          img.setAttribute('src', obj[data.skills[num]]);
+                          img.setAttribute('style', 'margin-left:10px;');
+                          num = num+3;
+                          ahref.appendChild(img);
+                          parentDiv.appendChild(ahref);
+                      }
+                  }
+              }
+      
+          } catch (e) {
+              console.log(e.message);
+          }
+      };
+      xhr.onerror = function() {
+          modal.hide();
+          console.log(this.status + " " + this.statusText);
+      };
+      xhr.send();
+  }
 });
