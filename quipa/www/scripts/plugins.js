@@ -93,11 +93,7 @@ document.addEventListener('init', function (event) {
           modal.show();
 
     }
-    else if(page.id == "tabbar-page") {
-      if(page.data.title == "My Requests")
-          document.getElementById('appTabbar').setActiveTab(2);
-    }
-
+    
     /*Pinky*/
 
     //SKILL TOGGLE FOR SEARCH PAGE
@@ -424,7 +420,18 @@ document.addEventListener('show', function(event) {
         };
         xhr.send();
 
-    }else if (page.id === 'profileHire') {
+    }
+    else if(page.id == "tabbar-page") {
+      if(document.getElementById('tabLoaderId').value == 1) {
+
+                          document.getElementById('appTabbar').setActiveTab(2);
+
+                          document.getElementById('tabLoaderId').value = 0;
+
+                          }
+    }
+
+    else if (page.id === 'profileHire') {
 
       var modal = document.querySelector('ons-modal');
       modal.show();
