@@ -42,18 +42,18 @@
                 </ons-list> <!--END LOGIN FORM-->
 
                         <div class="center">
-                            <ons-button modifier="large--cta" id="btnSignIn"> <!--need to write-->
+                            <ons-button class="btn" modifier="large--cta" id="btnSignIn"> <!--need to write-->
                                 Login
                             </ons-button>
                         </div> <!--LOGIN DIV-->
                     </div> <!--homeContent DIV-->
                     <br />
-                    <ons-button modifier="cta" id="push-peopleMap">
+                    <ons-button class="btn" modifier="cta" id="push-peopleMap">
                         Testing - People Map
                     </ons-button>
                     <!---PINKY------->
 
-                    <ons-button onclick="profileToHire()">
+                    <ons-button class="btn" class="btn" onclick="profileToHire()">
                         Testing Profile Hire
                     </ons-button>
                     <!---PINKY------->
@@ -64,12 +64,12 @@
 
             <ons-template id="register.html">
                 <ons-page id="register">
-                    <ons-toolbar>
+                    <ons-toolbar class="topBar">
                         <!--NAV BAR-->
                         <div class="left"><ons-back-button>Sign In</ons-back-button></div>
                         <div class="center"></div>
                         <div class="right">
-                            <ons-button onclick="moveToSkills()">Skills</ons-button>
+                            <ons-button class="btn" onclick="moveToSkills()">Skills</ons-button>
                         </div>
                     </ons-toolbar> <!--end NAV BAR-->
 
@@ -101,12 +101,12 @@
             </ons-template>
             <ons-template id="skills.html">
                 <ons-page id="skills">
-                    <ons-toolbar>
+                    <ons-toolbar class="topBar">
                         <!--NAV BAR-->
                         <div class="left"><ons-back-button></ons-back-button></div>
                         <div class="center">Skills</div>
                         <div class="right">
-                            <ons-button onclick="moveToProfilePicture()">Photo</ons-button>
+                            <ons-button class="btn" onclick="moveToProfilePicture()">Photo</ons-button>
                         </div>
                     </ons-toolbar> <!--end NAV BAR-->
                     <div class="skillsContainer">
@@ -134,12 +134,12 @@
             </ons-template>
             <ons-template id="profilepic.html">
                 <ons-page id="profilepic">
-                    <ons-toolbar>
+                    <ons-toolbar class="topBar">
                         <!--NAV BAR-->
                         <div class="left"><ons-back-button></ons-back-button></div>
                         <div class="center"></div>
                         <div class="right">
-                            <ons-button onclick="createProfile()">Submit</ons-button>
+                            <ons-button class="btn" onclick="createProfile()">Submit</ons-button>
                         </div>
                     </ons-toolbar> <!--end NAV BAR-->
 
@@ -147,11 +147,11 @@
 
                     <ons-bottom-toolbar id="bottombar">Upload Profile Picture</ons-bottom-toolbar>
                     <ons-speed-dial position="bottom right" direction="up">
-                        <ons-fab id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
-                        <ons-speed-dial-item>
+                        <ons-fab class="btn" id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
+                        <ons-speed-dial-item class="btn">
                             <ons-icon id="cameraPhoto" icon="ion-camera" size="32px"></ons-icon>
                         </ons-speed-dial-item>
-                        <ons-speed-dial-item>
+                        <ons-speed-dial-item class="btn">
                             <ons-icon id="galleryPhoto" icon="ion-images" size="32px"></ons-icon>
                         </ons-speed-dial-item>
                     </ons-speed-dial>
@@ -186,7 +186,7 @@
                 <div class="topBarContents">Quipa</div>
             </ons-toolbar>
             <div class="searching">
-               I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /><br />
+               <div id="searchText">I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /></div><br />
 
                     <div id="myDropdown" class="dropdown-content">
                         <form>
@@ -197,7 +197,7 @@
                             <input type="radio" name="skill" value="locksmith"><ons-icon icon="ion-key" size="40px" style="padding-right:.5em;"></ons-icon>
                             <ons-button class="btn">Search!</ons-button>
                         </form>
-                
+
             </div>
                 </div>
         <div id="searchLocation"></div>
@@ -221,7 +221,7 @@
 
             </ons-page>
         </ons-template>
-        
+
         <!---PINKY------->
         <ons-template id="profileHire.html">
             <ons-page id="profileHire">
@@ -242,7 +242,7 @@
                     <div id="profileDescription" style="width:98%;padding:1%;border:1px SOLID lightgrey;color:black;border-radius:5px;min-height:50px;font-size:20px;margin-bottom:20px;"></div>
                     <div id="thumbs"></div>
                     <hr/>
-                    
+
                     <div style="float:left;width:50%;">
                         <div style="float:left;line-height: 30px;font-size:20px;"><span style="font-weight:bold;" id="hourlyRate">$65</span> per hour</div>
                         <br clear="all"/>
@@ -255,12 +255,12 @@
                 </ons-card>
             </ons-page>
         </ons-template>
-        
+
         <!---PINKY------->
             <!---PINKY------->
             <ons-template id="profileSend.html">
                 <ons-page id="profileSend">
-                    <ons-toolbar>
+                    <ons-toolbar class="topBar">
                         <div class="left"><ons-back-button>Back</ons-back-button></div>
                         <div class="center">Review Your Request</div>
                     </ons-toolbar>
@@ -384,7 +384,7 @@
             </template>
             <template id="hired.html">
                 <ons-page id="requestHired">
-                    <ons-toolbar>
+                    <ons-toolbar class="topBar">
                         <div class="center">My Requests</div>
                     </ons-toolbar>
 
@@ -411,7 +411,7 @@
                 <ons-page id="profileConfirm">
                 </ons-page>
             </ons-template>
-            
+
             <ons-modal direction="up">
                 <div style="text-align: center">
                     <p>

@@ -28,15 +28,15 @@ document.addEventListener('init', function (event) {
         getSearcherLocation();
 
 
-        
+
 
     }
     /*Pinky*/
     else if (page.id === 'profileHire') {
-         
+
       var modal = document.querySelector('ons-modal');
       modal.show();
-        
+
     }
     else if (page.id === 'profileSend') {
 
@@ -52,12 +52,12 @@ document.addEventListener('init', function (event) {
         $('#toTime').val(currentHours + ':' + currentMinutes);
 
     }else if (page.id == "requestHired") {
-    
+
           var modal = document.querySelector('ons-modal');
           modal.show();
-                          
+
      }
-      
+
     /*Pinky*/
 
     //SKILL TOGGLE FOR SEARCH PAGE
@@ -169,88 +169,123 @@ document.addEventListener('init', function (event) {
 
 
     function buildMapSearch(lat, long) {
-        //set combined position for user
-        console.log("Inside of buildMapSearch");
-        var latlong = new google.maps.LatLng(lat, long);
-        //set required options
-        var mapOptions = {
-            center: latlong,
-            zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("search_map"), mapOptions);
-        //add initial location marker
-        var marker = new google.maps.Marker({ position: latlong, map: map });
-        console.log("Marker has been added");
+         //set combined position for user
+         console.log("Inside of buildMapSearch");
+         var latlong = new google.maps.LatLng(lat, long);
+         //set required options
+         var mapOptions = {
+             center: latlong,
+             zoom: 12,
+             mapTypeId: google.maps.MapTypeId.ROADMAP
+         };
+         var map = new google.maps.Map(document.getElementById("search_map"), mapOptions);
+         //add initial location marker
+         var marker = new google.maps.Marker({ position: latlong, map: map });
+         console.log("Marker has been added");
 
-        var geocoder = new google.maps.Geocoder;
-        var prospects = [];
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile");
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.onload = function () {
-            try {
-                if (this.status === 200) {
-                    var data = JSON.parse(this.response);
+         var geocoder = new google.maps.Geocoder;
+         var prospects = [];
+         const xhr = new XMLHttpRequest();
+         xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile");
+         xhr.setRequestHeader("Accept", "application/json");
+         xhr.onload = function () {
+             try {
+                 if (this.status === 200) {
+                     var data = JSON.parse(this.response);
 
-                    for (var i = 0; i < data.length; i++) {
-                        var record = data[i];
-                        if (record['profileId'] === 30 || record['profileId'] === 7 || record['profileId'] === 23) {
-                            var newContent = [];
-                            newContent.push(record['latitude']); //0
-                            newContent.push(record['longitude']); //1
-                            newContent.push(record['name']); //2
-                            newContent.push(record['description']); //3
-                            newContent.push(record['priceHour']); //4
-                            newContent.push(record['profileId']); //5
-                            newContent.push('https://i.imgur.com/KrIHCD2.png'); //6
-                            prospects.push(newContent);
-                            console.log("Pulling matching content from DB");
-                        }
+                     for (var i = 0; i < data.length; i++) {
+                         var record = data[i];
+                         if (record['profileId'] === 30 || record['profileId'] === 7 || record['profileId'] === 23) {
+                             var newContent = [];
+                             newContent.push(record['latitude']); //0
+                             newContent.push(record['longitude']); //1
+                             newContent.push(record['name']); //2
+                             newContent.push(record['description']); //3
+                             newContent.push(record['priceHour']); //4
+                             newContent.push(record['profileId']); //5
+                             newContent.push('https://i.imgur.com/KrIHCD2.png'); //6
+                             prospects.push(newContent);
+                             console.log("Pulling matching content from DB");
+                         }
 
-        
-        
+                     }
 
-    }
-    
+                     console.log(prospects);
+
+                     //lat, long, prospect info, userid, profilepic
+                     for (i = 0; i < prospects.length; i++) {
+                             var infowindow = new google.maps.InfoWindow;
+                             var d_latlng = { lat: parseFloat(prospects[i][0]), lng: parseFloat(prospects[i][1]) };
+                             console.log(d_latlng);
+                             var prospect = prospects[i][2] + " is a  " + prospects[i][3] + " charging $" + prospects[i][4] + " per hour";
+                             console.log(prospect);
+                             var userId = prospects[i][5];
+                             var profilePic = prospects[i][6];
+                             map.setZoom(13);
+                             var marker = new google.maps.Marker({
+                                 position: d_latlng,
+                                 icon: profilePic,
+                                 map: map
+                             });
+                             infowindow.setContent(prospect);
+                             infowindow.open(map, marker);
+                             marker.addListener('click', function () {
+                                 console.log("Marker clicked!");
+                                 document.querySelector('#Navigator').pushPage('fakeProfile.html', { date: { title: 'Fake Profile' } });
+                             });
+                         }
+                 } else {
+                     console.log(this.status + " " + this.statusText);
+                 }
+             } catch (e) {
+                 console.log(e.message);
+             }
+         };
+
+         xhr.onerror = function () {
+             console.log(this.status + " " + this.statusText);
+         };
+
+         xhr.send();
+       }
 
 
-});
 
+   });
 document.addEventListener('show', function(event) {
   var page = event.target;
-  
+
   if (page.id == "requestHired") {
-      
+
       var modal = document.querySelector('ons-modal');
       modal.show();
-                          
+
       var profileId = 1;
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/requestservice/request?profileId="+profileId);
       xhr.setRequestHeader("Accept", "application/json");
-      
+
       xhr.onload = function() {
-                          
+
           modal.hide();
           try {
               if (this.status === 200) {
-                  
+
                   var data = JSON.parse(this.response);
                   console.log(JSON.stringify(data));
-                          
-                          
+
+
                   var element = document.getElementById("myrequestContent");
                   element.innerHTML = '';
-                          
+
                   for(var i=0; i< data.length; i++) {
-                          
+
                       var currentItem = data[i];
                       var statusColor = "green";
                       if(currentItem['status'].toLowerCase() === 'pending') {
                           statusColor = "orange";
                       }
-                          
+
                       element.appendChild(ons.createElement(
                                                             '<ons-list-item>' +
                                                             '<div class="center">' +
@@ -289,7 +324,7 @@ document.addEventListener('show', function(event) {
                                                             '</div>' +
                                                             '</ons-list-item>'
                                                             ));
-                          
+
                   }
               }
           } catch (e) {
@@ -301,24 +336,24 @@ document.addEventListener('show', function(event) {
           console.log(this.status + " " + this.statusText);
       };
       xhr.send();
-                          
+
   }else if (page.id === 'profileHire') {
-                      
+
       var modal = document.querySelector('ons-modal');
       modal.show();
-                          
+
       var profileId = 37;
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile/"+profileId);
       xhr.setRequestHeader("Accept", "application/json");
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onload = function() {
-                          
+
           modal.hide();
           try {
               if (this.status === 200) {
                   $('#star').raty({ 'score': 4, 'readonly': true });
-                          
+
                   numReviews = 20;
                   var data = JSON.parse(this.response);
                   document.getElementById('numReviews').innerHTML = numReviews + " Reviews";
@@ -327,11 +362,11 @@ document.addEventListener('show', function(event) {
                   var profileImage = document.getElementById('profileImage');
                   profileImage.setAttribute('src', data.profilePicture);
                   var parentDiv = document.getElementById('thumbs');
-                  
+
                   var hourlyRate = document.getElementById('hourlyRate');
                   hourlyRate.innerHTML =  "$" + data.priceHour;
                   hourlyRate.setAttribute('style', 'text-align:left;font-size:5;font-weight:bold');
-      
+
                   var obj = {
                               1: "images/computer.png",
                               2: "images/cooker.png",
@@ -342,7 +377,7 @@ document.addEventListener('show', function(event) {
                               7: "images/telephonist.png",
                               8: "images/tutor.png",
                               9: "images/waitress.png"
-      
+
                               };
                   var skillnum = data.skills.length/3;
                   if (skillnum !=0){
@@ -359,7 +394,7 @@ document.addEventListener('show', function(event) {
                       }
                   }
               }
-      
+
           } catch (e) {
               console.log(e.message);
           }
