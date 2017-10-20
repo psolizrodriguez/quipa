@@ -38,7 +38,7 @@
                      <input type="hidden" id="profileId" value="1" />
                </div>
                 <div class="formDivision">
-                    <ons-button class="btn" onclick="verifyLogin()" />Login</ons-button>
+                    <ons-button id="lognbtn" class="btn" onclick="verifyLogin()" />Login</ons-button>
                 </div>
             </div>
                 </ons-page>
@@ -158,8 +158,6 @@
 
  <ons-template id="peopleMap.html">
         <ons-page id="peopleMap">
-            <ons-toolbar class="topBar">
-                <div class="topBarContents">Qhipa</div>
             </ons-toolbar>
             <div class="searching">
                <div id="searchText">I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /></div><br />
@@ -332,7 +330,7 @@
 
             <template id="tabbar.html">
                 <ons-page id="tabbar-page">
-                    <ons-tabbar id="appTabbar" position="auto">
+                    <ons-tabbar id="appTabbar" style="background-color:#58373C;" position="bottom">
                         <ons-tab label="Search" icon="ion-ios-search" page="peopleMap.html" ></ons-tab>
                         <ons-tab label="Favorites" icon="ion-ios-heart-outline" page="favorites.html"></ons-tab>
                         <ons-tab label="Hired" icon="ion-card" page="hired.html" active></ons-tab>

@@ -12,6 +12,10 @@ html, body {
     margin-bottom: 10px;
 }
 
+#lognbtn {
+  margin-left: 40%;
+}
+
 .btn {
     background-color: #58373C;
 }
@@ -114,6 +118,11 @@ html, body {
 .searching {
     background-color: #58373C;
 }
+
+#searchText {
+  color: white;
+}
+
 .page__background{
 	background:url(../images/background2.jpg) center top;
 	background-size: cover;
@@ -145,6 +154,6 @@ html, body {
 	width: 100%;
 }
 
-#appTabbar {
+.tab-bar {
   background-color: #58373C;
 }
