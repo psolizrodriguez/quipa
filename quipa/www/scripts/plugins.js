@@ -93,6 +93,10 @@ document.addEventListener('init', function (event) {
           modal.show();
 
     }
+    else if(page.id == "tabbar-page") {
+      if(page.data.title == "My Requests")
+          document.getElementById('appTabbar').setActiveTab(2);
+    }
 
     /*Pinky*/
 
