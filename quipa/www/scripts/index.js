@@ -11,6 +11,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        
     },
 
     // Update DOM on a Received Event
@@ -21,10 +22,68 @@ var app = {
     }
 
 };
-var lastProfileCreated;
+var currentProfile;
+var skillObj = {
+    1: "images/computer.png",
+    2: "images/cooker.png",
+    3: "images/hair_stylist.png",
+    4: "images/handyman.png",
+    5: "images/mechanic.png",
+    6: "images/painter.png",
+    7: "images/telephonist.png",
+    8: "images/tutor.png",
+    9: "images/waitress.png"
+
+};
+
+function verifyLogin(){
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    console.log(username +' attempting to login');
+    document.querySelector('#Navigator').pushPage('tabbar.html', { data: { title: 'My Requests' } });
+}
 function loadProfileCreated(){
-    console.log('here');
-    document.getElementById('profilePictureCreatedView').src=lastProfileCreated['profilePicture'];
+    console.log('test');
+    var modal = document.querySelector('ons-modal');
+    modal.show();
+    var profileId = document.getElementById('profileId').value;
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile/"+profileId);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.onload = function () {
+       try {
+           if (this.status === 200) {
+            var data = JSON.parse(this.response);
+            console.log(data);
+            document.getElementById('previewName').innerHTML=data['name'];
+            document.getElementById('previewImage').src=data['profilePicture'];
+            document.getElementById('previewDescription').innerHTML=data['description'];
+            document.getElementById('previewPriceHour').innerHTML='$' + data['priceHour'] + ' per Hour';
+            var profileSkills = data['skills'];
+            profileSkills = profileSkills.slice(1, -1);
+            var arrayOfStrings = profileSkills.split('][');
+            var auxSkills = '';
+            for (var i = 0; i < arrayOfStrings.length; i++) {
+                console.log(arrayOfStrings[i]);
+                auxSkills+='<img src="'+skillObj[arrayOfStrings[i]]+'" width="50" height="50">';
+            }
+            document.getElementById('previewSkills').innerHTML=auxSkills;
+            console.log(data);
+            var modal = document.querySelector('ons-modal');
+            modal.hide();
+        } else {
+           console.log(this.status + " " + this.statusText);
+       }
+   } catch (e) {
+       console.log(e.message);
+   }
+};
+
+xhr.onerror = function () {
+   console.log(this.status + " " + this.statusText);
+};
+
+xhr.send();    
 }
 
 function backToLogin(){
@@ -52,13 +111,14 @@ function addToSkills(skillId){
     console.log(skills);
 }
 function getBase64Image(img) {
-  var canvas = document.createElement("canvas");
-  canvas.width = img.width;
-  canvas.height = img.height;
-  var ctx = canvas.getContext("2d");
-  ctx.drawImage(img, 0, 0);
-  var dataURL = canvas.toDataURL("image/png");
-  return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img,0,0,img.width,img.height);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 function createProfile(){
     var base64 = getBase64Image(document.getElementById("imageView"));
@@ -75,29 +135,28 @@ function createProfile(){
     }
     console.log(profile);
     const xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile");
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onload = function() {
-            try {
-                if (this.status === 200) {
-                    var data = JSON.parse(this.response);
-                    document.querySelector('#Navigator').pushPage('profilecreated.html', { data: { title: 'Profile Created' } });
-                    document.getElementById('profilePictureCreated').value=data['profilePicture'];
-                    lastProfileCreated=data;
-                    console.log(lastProfileCreated);
-                } else {
-                    console.log(this.status + " " + this.statusText);
-                }
-            } catch (e) {
-                console.log(e.message);
+    xhr.open("POST", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile");
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onload = function() {
+        try {
+            if (this.status === 200) {
+                var data = JSON.parse(this.response);
+                document.querySelector('#Navigator').pushPage('profile.html', { data: { title: 'Profile Created' } });
+                document.getElementById('profilePictureCreated').value=data['profilePicture'];
+                document.getElementById('profileId').value=data['profileId'];
+            } else {
+                console.log(this.status + " " + this.statusText);
             }
-        };
+        } catch (e) {
+            console.log(e.message);
+        }
+    };
 
-        xhr.onerror = function() {
-            console.log(this.status + " " + this.statusText);
-        };
-        xhr.send(JSON.stringify(profile));
+    xhr.onerror = function() {
+        console.log(this.status + " " + this.statusText);
+    };
+    xhr.send(JSON.stringify(profile));
 }
 
 app.initialize();
@@ -112,8 +171,8 @@ function profileToSend() {
 }
 
 function confirmProfile() {
-    
-    var profileId = 39;
+
+    var profileId = document.getElementById('profileId').value;
     
     var hours = document.getElementById('noOfHours').value;
     var date = document.getElementById('dateOfRequest').value;

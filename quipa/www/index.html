@@ -29,36 +29,18 @@
                     </ons-button>
                 </div>
             </ons-toolbar> <!--end NAV BAR-->
-            <h3>Login</h3>
-            <!-- homeContent - home content -->
             <div id="homeContent" class="page-content">
-                <ons-list id="login">
-                    <ons-list-item>
-                        <input type="text" id="username" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                    </ons-list-item>
-                    <ons-list-item>
-                        <input type="password" id="login-pass" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                    </ons-list-item>
-                </ons-list> <!--END LOGIN FORM-->
-
-                        <div class="center">
-                            <ons-button class="btn" modifier="large--cta" id="btnSignIn"> <!--need to write-->
-                                Login
-                            </ons-button>
-                        </div> <!--LOGIN DIV-->
-                    </div> <!--homeContent DIV-->
-                    <br />
-                    <ons-button class="btn" modifier="cta" id="push-peopleMap">
-                        Testing - People Map
-                    </ons-button>
-                    <!---PINKY------->
-
-                    <ons-button class="btn" class="btn" onclick="profileToHire()">
-                        Testing Profile Hire
-                    </ons-button>
-                    <!---PINKY------->
-
-
+                <div class="formDivision">
+                    <input type="text" id="username" placeholder="333-333-1234">
+                </div>
+                <div class="formDivision">
+                    <input type="password" id="password" placeholder="password">
+                     <input type="hidden" id="profileId" value="1" />
+               </div>
+                <div class="formDivision">
+                    <ons-button class="btn" onclick="verifyLogin()" />Login</ons-button>
+                </div>
+            </div>
                 </ons-page>
             </ons-template> <!--END LOGIN MAIN PAGE-->
 
@@ -67,32 +49,31 @@
                     <ons-toolbar class="topBar">
                         <!--NAV BAR-->
                         <div class="left"><ons-back-button>Sign In</ons-back-button></div>
-                        <div class="center"></div>
+                        <div class="center">Create Profile</div>
                         <div class="right">
                             <ons-button class="btn" onclick="moveToSkills()">Skills</ons-button>
                         </div>
                     </ons-toolbar> <!--end NAV BAR-->
+                    <div id="commonForm" class="page-content">
+                        <div class="formDivision">
+                            <input id="name" type="text" placeholder="Full Name">
+                        </div>
+                        <div class="formDivision">
+                            <textarea id="description" type="text" placeholder="About the prospect"></textarea>
+                        </div>
 
-                    <ons-list> <!--REGISTRATION FORM-->
-                        <ons-list-item>
-                            <input id="name" type="text" placeholder="Full Name" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                        </ons-list-item>
-                        <ons-list-item>
-                            <textarea id="description" type="text" placeholder="About the prospect" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;"></textarea>
-                        </ons-list-item>
-
-                        <ons-list-item>
-                            <input id="email" type="text" placeholder="Email Address" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                        </ons-list-item>
-                        <ons-list-item>
-                            <input id="password" type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                        </ons-list-item>
-                        <ons-list-item>
-                            <input id="mobilePhoneNumber" type="text" placeholder="Phone Number" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                        </ons-list-item>
+                        <div class="formDivision">
+                            <input id="email" type="text" placeholder="Email Address">
+                        </div>
+                        <div class="formDivision">
+                            <input id="password" type="password" placeholder="Password">
+                        </div>
+                        <div class="formDivision">
+                            <input id="mobilePhoneNumber" type="text" placeholder="Phone Number">
+                        </div>
                         <input id="latitude" type="hidden"/>
                         <input id="longitude" type="hidden"/>
-                    </ons-list>
+                    </div>
                     <div id="location"></div>
                     <!-- MAP CANVAS-->
                     <div id="map_canvas"></div>
@@ -146,7 +127,7 @@
 
                     <!--PHOTO OPTIONS-->
 
-                    <ons-bottom-toolbar id="bottombar">Upload Profile Picture</ons-bottom-toolbar>
+                    <ons-bottom-toolbar id="bottombar"></ons-bottom-toolbar>
                     <ons-speed-dial position="bottom right" direction="up">
                         <ons-fab class="btn" id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
                         <ons-speed-dial-item class="btn">
@@ -156,10 +137,8 @@
                             <ons-icon id="galleryPhoto" icon="ion-images" size="32px"></ons-icon>
                         </ons-speed-dial-item>
                     </ons-speed-dial>
-
-
-                    <div id="photo">
-                        <img id="imageView"/ src="images/0.png"><br />Profile Picture
+                    <div class="photo">
+                        <img id="imageView"/ src="images/0.png" />
                     </div><!-- /photo preview -->
 
                 </ons-page>
@@ -193,6 +172,7 @@
                             <input type="radio" name="skill" value="accountant"><ons-icon icon="ion-calculator" size="40px"></ons-icon>
                             <input type="radio" name="skill" value="locksmith"><ons-icon icon="ion-key" size="40px" style="padding-right:.5em;"></ons-icon>
                             <ons-button class="btn">Search!</ons-button>
+                            <input id="prospectIdProfileHire" type="hidden" />
                         </form>
 
             </div>
@@ -200,6 +180,7 @@
         <div id="searchLocation"></div>
         <div id="latlng"></div>
         <!-- MAP CANVAS-->
+
         <div id="search_map"></div>
 
             <ons-bottom-toolbar class="bottombar">
@@ -244,7 +225,7 @@
                         <div style="float:left;line-height: 30px;font-size:20px;"><span style="font-weight:bold;" id="hourlyRate">$65</span> per hour</div>
                         <br clear="all"/>
                         <span>Needs confirmation</span>
-                        <input id="prospectIdProfileHire" type="hidden" />
+                        
                         <input id="priceHoursProfileHire" type="hidden" />
                         <input id="noOfHours" type="hidden" value="2" /> <!-- Hardcoded Temp -->
                         <input id="dateOfRequest" type="hidden" value="10-19-2017"/> <!-- Hardcoded Temp -->
@@ -406,7 +387,26 @@
                 </ons-page>
             </template>
             <template id="profile.html">
-                <ons-page>
+                <ons-page id="profile">
+                    <ons-toolbar class="topBar">
+                        <div class="left"><ons-back-button onclick="backToLogin()">Log Out</ons-back-button></div>
+                        <div class="center">My Profile</div>
+                    </ons-toolbar>
+                    <ons-card>
+                        <div id="previewName">Percy Soliz</div>
+                        <div id="previewImageContainer">
+                            <img id="previewImage"/ src="images/0.png" />
+                        </div>
+                        <div id="previewDescription">
+                            Hero of Gotham
+                        </div>
+                        <div id="previewSkills">
+                            Hero of Gotham
+                        </div>
+                         <div id="previewPriceHour">
+                            $10 per hour
+                        </div>
+                    </ons-card>
                 </ons-page>
             </template>
 

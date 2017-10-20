@@ -8,10 +8,6 @@ document.addEventListener('init', function (event) {
             document.querySelector('#Navigator').pushPage('register.html', { data: { title: 'Register' } });
 
         };
-        page.querySelector("#push-peopleMap").onclick = function () {
-            console.log("In here");
-            document.querySelector('#Navigator').pushPage('peopleMap.html', { date: { title: 'Upload a profile Picture' } });
-        };
     } else if (page.id === 'profilepic') {
         page.querySelector("#cameraPhoto").onclick = function (e) {
             e.preventDefault();
@@ -27,7 +23,8 @@ document.addEventListener('init', function (event) {
         getSearcherLocation();
     
     /*Percy*/
-    } else if (page.id === 'profilecreated') {
+    } else if (page.id === 'profile') {
+        console.log('profile');
         loadProfileCreated();
     /*Percy*/
     /*Pinky*/
@@ -156,6 +153,7 @@ document.addEventListener('init', function (event) {
         console.log("imageData is of type " + typeof imageData);
         var image = document.getElementById('imageView');
         image.src = imageData;
+
     }
 
     function onFailImage(message) {
@@ -231,10 +229,10 @@ document.addEventListener('init', function (event) {
              try {
                  if (this.status === 200) {
                      var data = JSON.parse(this.response);
-
+                    console.log(data);
                      for (var i = 0; i < data.length; i++) {
                          var record = data[i];
-                         if (record['profileId'] === 30 || record['profileId'] === 7 || record['profileId'] === 23) {
+                        // if (record['profileId'] === 30 || record['profileId'] === 7 || record['profileId'] === 23) {
                              var newContent = [];
                              newContent.push(record['latitude']); //0
                              newContent.push(record['longitude']); //1
@@ -242,10 +240,10 @@ document.addEventListener('init', function (event) {
                              newContent.push(record['description']); //3
                              newContent.push(record['priceHour']); //4
                              newContent.push(record['profileId']); //5
-                             newContent.push('https://i.imgur.com/KrIHCD2.png'); //6
+                             newContent.push(record['profilePicture']); //6
                              prospects.push(newContent);
                              console.log("Pulling matching content from DB");
-                         }
+                        // }
 
                      }
 
@@ -256,23 +254,32 @@ document.addEventListener('init', function (event) {
                              var infowindow = new google.maps.InfoWindow;
                              var d_latlng = { lat: parseFloat(prospects[i][0]), lng: parseFloat(prospects[i][1]) };
                              console.log(d_latlng);
-                             var prospect = prospects[i][2] + " is a  " + prospects[i][3] + " charging $" + prospects[i][4] + " per hour";
+                             var prospect = prospects[i][2] + '(' + prospects[i][4] + ' $/h)';
                              console.log(prospect);
                              var userId = prospects[i][5];
                              var profilePic = prospects[i][6];
+                             var image = {
+                              url: profilePic,
+                              size: new google.maps.Size(40, 40),
+                              scaledSize: new google.maps.Size(40, 40)
+                            };
                              map.setZoom(13);
                              var marker = new google.maps.Marker({
                                  position: d_latlng,
-                                 icon: profilePic,
+                                 icon: image,
                                  map: map
                              });
                              infowindow.setContent(prospect);
                              infowindow.open(map, marker);
                              marker.addListener('click', function () {
-                                 console.log("Marker clicked!");
-                                 document.querySelector('#Navigator').pushPage('fakeProfile.html', { date: { title: 'Fake Profile' } });
+                                 console.log("Marker clicked!" + userId);
+                                 document.getElementById('prospectIdProfileHire').value=userId;
+                                 profileToHire();
+                                 //document.querySelector('#Navigator').pushPage('fakeProfile.html', { date: { title: 'Fake Profile' } });
                              });
                          }
+                         var modal = document.querySelector('ons-modal');
+                        modal.hide();
                  } else {
                      console.log(this.status + " " + this.statusText);
                  }
@@ -319,8 +326,8 @@ document.addEventListener('show', function(event) {
         var element = document.getElementById("myrequestContent");
         element.innerHTML = '';
 
-        var profileId = 39;
-
+        var profileId = document.getElementById('profileId').value;
+        console.log('profileId = ' + profileId);
 
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/requestservice/request?profileId="+profileId);
@@ -418,7 +425,7 @@ document.addEventListener('show', function(event) {
       var modal = document.querySelector('ons-modal');
       modal.show();
                           
-      var prospectId = 37;
+      var prospectId = document.getElementById('prospectIdProfileHire').value;
 
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile/"+prospectId);
@@ -433,7 +440,6 @@ document.addEventListener('show', function(event) {
                           
                   numReviews = 20;
                   var data = JSON.parse(this.response);
-                  document.getElementById('prospectIdProfileHire').value = prospectId;
                   document.getElementById('priceHoursProfileHire').value = data.priceHour;
                   document.getElementById('numReviews').innerHTML = numReviews + " Reviews";
                   document.getElementById('profileName').innerHTML = data.name;
