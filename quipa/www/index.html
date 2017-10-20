@@ -130,6 +130,7 @@
                         </div>
                     </div>
                     <input id="skills" type="hidden" value="" />
+                    <input type="hidden" id="profilePictureCreated">
                 </ons-page>
             </ons-template>
             <ons-template id="profilepic.html">
@@ -158,7 +159,7 @@
 
 
                     <div id="photo">
-                        <img id="imageView"/><br />Profile Picture
+                        <img id="imageView"/ src="images/0.png"><br />Profile Picture
                     </div><!-- /photo preview -->
 
                 </ons-page>
@@ -166,19 +167,15 @@
 
             <ons-template id="profilecreated.html">
                 <ons-page id="profilecreated">
-                    <ons-list> <!--REGISTRATION FORM-->
-                        <ons-list-item>
-                            <a href="#"><img height="40" width="40md" src="http://xiostorage.com/wp-content/uploads/2015/10/test.png"  data-rel="external"/></a>
-                        </ons-list-item>
-                        <ons-list-item>
-                         <div class="center">
-                            <ons-button onclick="backToLogin()">Profile Created!</ons-button>
-                        </ons-list-item>
-                    </ons-list>
-                </div>
+                    <p style="text-align:center">
+                         <img id="profilePictureCreatedView" src="http://xiostorage.com/wp-content/uploads/2015/10/test.png"/>
+                    </p>
+                    <div class="center">
+                        <ons-button onclick="backToLogin()">Profile Created!</ons-button>
+                    </div>
 
-            </ons-page>
-        </ons-template>
+                </ons-page>
+            </ons-template>
 
  <ons-template id="peopleMap.html">
         <ons-page id="peopleMap">
