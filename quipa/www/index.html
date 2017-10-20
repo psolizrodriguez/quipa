@@ -2,7 +2,7 @@
         <!DOCTYPE html>
         <html>
         <head>
-            <title>QUIPA</title>
+            <title>QHIPA</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsenui.css">
             <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
@@ -21,7 +21,7 @@
             <ons-toolbar class="topBar">
                 <!--NAV BAR-->
                 <div class="left"></div>
-                <div class="center">QUIPA</div>
+                <div class="center">QHIPA</div>
                 <!--Not sure how to make this less squashed looking-->
                 <div class="right">
                     <ons-button class="btn" modifier="cta" id="push-button">
@@ -31,14 +31,14 @@
             </ons-toolbar> <!--end NAV BAR-->
             <div id="homeContent" class="page-content">
                 <div class="formDivision">
-                    <input type="text" id="username" placeholder="333-333-1234">
+                    <input type="text" id="username" placeholder=" 333-333-1234">
                 </div>
                 <div class="formDivision">
-                    <input type="password" id="password" placeholder="password">
+                    <input type="password" id="password" placeholder=" Password">
                      <input type="hidden" id="profileId" value="1" />
                </div>
                 <div class="formDivision">
-                    <ons-button class="btn" onclick="verifyLogin()" />Login</ons-button>
+                    <ons-button id="lognbtn" class="btn" onclick="verifyLogin()" />Login</ons-button>
                 </div>
             </div>
                 </ons-page>
@@ -158,8 +158,6 @@
 
  <ons-template id="peopleMap.html">
         <ons-page id="peopleMap">
-            <ons-toolbar class="topBar">
-                <div class="topBarContents">Quipa</div>
             </ons-toolbar>
             <div class="searching">
                <div id="searchText">I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /></div><br />
@@ -183,13 +181,6 @@
 
         <div id="search_map"></div>
 
-            <ons-bottom-toolbar class="bottombar">
-                    <ons-toolbar-button class="currentPage"><ons-icon icon="ion-ios-search-strong" size="40px"></ons-icon></ons-toolbar-button>
-                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-star" size="40px"></ons-icon></ons-toolbar-button>
-                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-person-stalker" size="40px"></ons-icon></ons-toolbar-button>
-                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-email" size="40px"></ons-icon></ons-toolbar-button>
-                    <ons-toolbar-button><ons-icon class="btmicons" icon="ion-person" size="40px"></ons-icon></ons-toolbar-button>
-            </ons-bottom-toolbar>
         </ons-page>
     </ons-template>
 
@@ -220,17 +211,17 @@
                     <div id="profileDescription" style="width:98%;padding:1%;border:1px SOLID lightgrey;color:black;border-radius:5px;min-height:50px;font-size:20px;margin-bottom:20px;"></div>
                     <div id="thumbs"></div>
                     <hr/>
-                    
+
                     <div style="float:left;width:50%;">
                         <div style="float:left;line-height: 30px;font-size:20px;"><span style="font-weight:bold;" id="hourlyRate">$65</span> per hour</div>
                         <br clear="all"/>
                         <span>Needs confirmation</span>
-                        
+
                         <input id="priceHoursProfileHire" type="hidden" />
                         <input id="noOfHours" type="hidden" value="2" /> <!-- Hardcoded Temp -->
                         <input id="dateOfRequest" type="hidden" value="10-19-2017"/> <!-- Hardcoded Temp -->
                         <input id="profileSkillId" type="hidden" value="3"/> <!-- Hardcoded Temp -->
-                        
+
                     </div>
                     <div style="float:right;">
                         <ons-button onclick="profileToSend();" class="topBar">Hire</ons-button>
@@ -264,18 +255,18 @@
                                         </div>
                                         <br/>
                                         <br/>
-                                        
+
                                         <div  style="width:100%;height:30px;">
                                             <span style="float:left;font-size:20px;line-height: 30px;">from</span>
-                                            
+
                                             <input type="time" class="text-input" id="fromTime" style="float:right;font-weight:bold;font-size:18px;"/>
-                                            
+
                                         </div>
                                         <br/>
                                         <br/>
                                         <div  style="width:100%;height:30px;">
                                             <span style="float:left;font-size:20px;line-height: 30px;">to</span>
-                                            
+
                                             <input type="time" class="text-input" id="toTime" style="float:right;font-weight:bold;font-size:18px;"/>
                                         </div>
                                     </div>
@@ -308,7 +299,7 @@
                                             <span style="float:left;margin-left:20px;line-height: 30px;font-size:20px;">Transportation</span>
                                             <span style="float:right;margin-left:20px;line-height: 30px;font-size:20px;"><span id="reviewPriceTransportation"></span></span>
                                         </div>
-                                        
+
                                         <div style="width:90%;">
                                             <hr>
                                         </div>
@@ -339,10 +330,10 @@
 
             <template id="tabbar.html">
                 <ons-page id="tabbar-page">
-                    <ons-tabbar id="appTabbar" position="auto">
+                    <ons-tabbar id="appTabbar" style="background-color:#58373C;" position="bottom">
                         <ons-tab label="Search" icon="ion-ios-search" page="peopleMap.html" ></ons-tab>
                         <ons-tab label="Favorites" icon="ion-ios-heart-outline" page="favorites.html"></ons-tab>
-                        <ons-tab label="Hired" icon="ion-card" page="hired.html" active></ons-tab>
+                        <ons-tab label="Hired" icon="ion-card" page="hired.html"></ons-tab>
                         <ons-tab label="Inbox" icon="ion-email" page="inbox.html"></ons-tab>
                         <ons-tab label="Profile" icon="ion-ios-person-outline" page="profile.html"></ons-tab>
                     </ons-tabbar>

@@ -11,7 +11,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
-        
+
     },
 
     // Update DOM on a Received Event
@@ -83,11 +83,11 @@ xhr.onerror = function () {
    console.log(this.status + " " + this.statusText);
 };
 
-xhr.send();    
+xhr.send();
 }
 
 function backToLogin(){
-    document.querySelector('#Navigator').pushPage('login.html', { data: { title: 'Quipa' } });
+    document.querySelector('#Navigator').pushPage('login.html', { data: { title: 'Qhipa' } });
 }
 function moveToProfilePicture(){
     document.querySelector('#Navigator').pushPage('profilepic.html', { data: { title: 'Profile Picture' } });
@@ -173,7 +173,7 @@ function profileToSend() {
 function confirmProfile() {
 
     var profileId = document.getElementById('profileId').value;
-    
+
     var hours = document.getElementById('noOfHours').value;
     var date = document.getElementById('dateOfRequest').value;
     var prospectId = document.getElementById('prospectIdProfileHire').value;
@@ -197,18 +197,18 @@ function confirmProfile() {
     }
     console.log(request);
     const xhr = new XMLHttpRequest();
-    
+
     xhr.open("POST", "http://18.220.231.8:8080/QuipaServer/services/requestservice/request/");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
-    
+
     xhr.onload = function() {
         try {
             if (this.status === 200) {
                 var data = JSON.parse(this.response);
                 console.log(data);
                 document.querySelector('#Navigator').pushPage('tabbar.html', {data: {title: 'My Requests'}});
-                
+
             } else {
                 console.log(this.status + " " + this.statusText);
             }
@@ -216,7 +216,7 @@ function confirmProfile() {
             console.log(e.message);
         }
     };
-    
+
     xhr.onerror = function() {
         console.log(this.status + " " + this.statusText);
     };
