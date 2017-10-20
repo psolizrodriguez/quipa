@@ -1,5 +1,4 @@
-
-
+﻿
 document.addEventListener('init', function (event) {
     var page = event.target;
 
@@ -26,13 +25,13 @@ document.addEventListener('init', function (event) {
 
     } else if (page.id === 'peopleMap') {
         getSearcherLocation();
-
-
-
-
-    }
+    
+    /*Percy*/
+    } else if (page.id === 'profilecreated') {
+        loadProfileCreated();
+    /*Percy*/
     /*Pinky*/
-    else if (page.id === 'profileHire') {
+    }else if (page.id === 'profileHire') {
 
       var modal = document.querySelector('ons-modal');
       modal.show();

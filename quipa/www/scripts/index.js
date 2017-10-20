@@ -21,6 +21,11 @@ var app = {
     }
 
 };
+var lastProfileCreated;
+function loadProfileCreated(){
+    console.log('here');
+    document.getElementById('profilePictureCreatedView').src=lastProfileCreated['profilePicture'];
+}
 
 function backToLogin(){
     document.querySelector('#Navigator').pushPage('login.html', { data: { title: 'Quipa' } });
@@ -46,12 +51,21 @@ function addToSkills(skillId){
     document.getElementById('skills').value = skills;
     console.log(skills);
 }
+function getBase64Image(img) {
+  var canvas = document.createElement("canvas");
+  canvas.width = img.width;
+  canvas.height = img.height;
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0);
+  var dataURL = canvas.toDataURL("image/png");
+  return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
 function createProfile(){
-
+    var base64 = getBase64Image(document.getElementById("imageView"));
     var profile = {
         "name": document.getElementById('name').value,
         "description": document.getElementById('description').value,
-        "profilePicture": "",
+        "profilePicture": base64,
         "email": document.getElementById('email').value,
         "password": document.getElementById('password').value,
         "mobilePhoneNumber": document.getElementById('mobilePhoneNumber').value,
@@ -69,7 +83,9 @@ function createProfile(){
                 if (this.status === 200) {
                     var data = JSON.parse(this.response);
                     document.querySelector('#Navigator').pushPage('profilecreated.html', { data: { title: 'Profile Created' } });
-                    console.log(data);
+                    document.getElementById('profilePictureCreated').value=data['profilePicture'];
+                    lastProfileCreated=data;
+                    console.log(lastProfileCreated);
                 } else {
                     console.log(this.status + " " + this.statusText);
                 }
