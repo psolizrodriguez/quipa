@@ -207,7 +207,7 @@ function confirmProfile() {
             if (this.status === 200) {
                 var data = JSON.parse(this.response);
                 console.log(data);
-                document.querySelector('#Navigator').pushPage('tabbar.html', {data: {title: 'My Requests'}});
+                document.querySelector('#Navigator').bringPageTop('tabbar.html', {data: {title: 'My Requests'}});
                 
             } else {
                 console.log(this.status + " " + this.statusText);
