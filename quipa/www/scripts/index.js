@@ -47,6 +47,7 @@ function addToSkills(skillId){
     console.log(skills);
 }
 function createProfile(){
+
     var profile = {
         "name": document.getElementById('name').value,
         "description": document.getElementById('description').value,
@@ -84,3 +85,17 @@ function createProfile(){
 }
 
 app.initialize();
+
+/*Pinky*/
+function profileToHire(){
+    document.querySelector('#Navigator').pushPage('profileHire.html', { date: { title: 'Hiring a Profile' } });
+}
+
+function profileToSend() {
+    document.querySelector('#Navigator').pushPage('profileSend.html', { date: { title: 'Hiring a Profile' } });
+}
+
+function confirmProfile() {
+    document.querySelector('#Navigator').pushPage('tabbar.html', {data: {title: 'My Requests'}});
+}
+/*Pinky*/

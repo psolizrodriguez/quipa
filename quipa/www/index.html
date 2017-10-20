@@ -7,59 +7,69 @@
             <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsenui.css">
             <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
             <link rel="stylesheet" type="text/css" href="css/index.css">
+            <!---PINKY------->
+            <link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+            <!---PINKY------->
 
-        </head>
-        <body>
-            <!--angular controller-->
-            <ons-navigator swipeable id="Navigator" page="login.html"></ons-navigator>
-            <!-- login -->
-            <ons-template id="login.html">
-                <ons-page id="login">
-                    <!-- page toolbar -->
-                    <ons-toolbar>
-                        <!--NAV BAR-->
-                        <div class="left"></div>
-                        <div class="center">QUIPA</div>
-                        <!--Not sure how to make this less squashed looking-->
-                        <div class="right">
-                            <ons-button id="push-button">
-                                Register
-                            </ons-button>
-                        </div>
-                    </ons-toolbar> <!--end NAV BAR-->
-                    <h3>Login</h3>
-                    <!-- homeContent - home content -->
-                    <div id="homeContent" class="page-content">
-                        <ons-list id="login">
-                            <ons-list-item>
-                                <input type="text" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                            </ons-list-item>
-                            <ons-list-item>
-                                <input type="password" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
-                            </ons-list-item>
-                        </ons-list> <!--END LOGIN FORM-->
+</head>
+<body>
+    <ons-navigator swipeable id="Navigator" page="login.html"></ons-navigator>
+    <!-- login -->
+    <ons-template id="login.html">
+        <ons-page id="login">
+            <!-- page toolbar -->
+            <ons-toolbar class="topBar">
+                <!--NAV BAR-->
+                <div class="left"></div>
+                <div class="center">QUIPA</div>
+                <!--Not sure how to make this less squashed looking-->
+                <div class="right">
+                    <ons-button class="btn" modifier="cta" id="push-button">
+                        Register
+                    </ons-button>
+                </div>
+            </ons-toolbar> <!--end NAV BAR-->
+            <h3>Login</h3>
+            <!-- homeContent - home content -->
+            <div id="homeContent" class="page-content">
+                <ons-list id="login">
+                    <ons-list-item>
+                        <input type="text" id="username" placeholder="Username" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                    </ons-list-item>
+                    <ons-list-item>
+                        <input type="password" id="login-pass" placeholder="Password" class="text-input text-input--transparent" style="margin-top:8px; width: 100%;">
+                    </ons-list-item>
+                </ons-list> <!--END LOGIN FORM-->
 
                         <div class="center">
-                            <ons-button modifier="large--cta" id="btnSignIn"> <!--need to write-->
+                            <ons-button class="btn" modifier="large--cta" id="btnSignIn"> <!--need to write-->
                                 Login
                             </ons-button>
                         </div> <!--LOGIN DIV-->
                     </div> <!--homeContent DIV-->
                     <br />
-                    <ons-button modifier="cta" id="push-peopleMap">
+                    <ons-button class="btn" modifier="cta" id="push-peopleMap">
                         Testing - People Map
                     </ons-button>
+                    <!---PINKY------->
+
+                    <ons-button class="btn" class="btn" onclick="profileToHire()">
+                        Testing Profile Hire
+                    </ons-button>
+                    <!---PINKY------->
+
+
                 </ons-page>
             </ons-template> <!--END LOGIN MAIN PAGE-->
 
             <ons-template id="register.html">
                 <ons-page id="register">
-                    <ons-toolbar>
+                    <ons-toolbar class="topBar">
                         <!--NAV BAR-->
                         <div class="left"><ons-back-button>Sign In</ons-back-button></div>
                         <div class="center"></div>
                         <div class="right">
-                            <ons-button onclick="moveToSkills()">Skills</ons-button>
+                            <ons-button class="btn" onclick="moveToSkills()">Skills</ons-button>
                         </div>
                     </ons-toolbar> <!--end NAV BAR-->
 
@@ -91,12 +101,12 @@
             </ons-template>
             <ons-template id="skills.html">
                 <ons-page id="skills">
-                    <ons-toolbar>
+                    <ons-toolbar class="topBar">
                         <!--NAV BAR-->
                         <div class="left"><ons-back-button></ons-back-button></div>
                         <div class="center">Skills</div>
                         <div class="right">
-                            <ons-button onclick="moveToProfilePicture()">Photo</ons-button>
+                            <ons-button class="btn" onclick="moveToProfilePicture()">Photo</ons-button>
                         </div>
                     </ons-toolbar> <!--end NAV BAR-->
                     <div class="skillsContainer">
@@ -124,12 +134,12 @@
             </ons-template>
             <ons-template id="profilepic.html">
                 <ons-page id="profilepic">
-                    <ons-toolbar>
+                    <ons-toolbar class="topBar">
                         <!--NAV BAR-->
                         <div class="left"><ons-back-button></ons-back-button></div>
                         <div class="center"></div>
                         <div class="right">
-                            <ons-button onclick="createProfile()">Submit</ons-button>
+                            <ons-button class="btn" onclick="createProfile()">Submit</ons-button>
                         </div>
                     </ons-toolbar> <!--end NAV BAR-->
 
@@ -137,11 +147,11 @@
 
                     <ons-bottom-toolbar id="bottombar">Upload Profile Picture</ons-bottom-toolbar>
                     <ons-speed-dial position="bottom right" direction="up">
-                        <ons-fab id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
-                        <ons-speed-dial-item>
+                        <ons-fab class="btn" id="speed-dial"><ons-icon icon="ion-person" size="40px"></ons-icon></ons-fab>
+                        <ons-speed-dial-item class="btn">
                             <ons-icon id="cameraPhoto" icon="ion-camera" size="32px"></ons-icon>
                         </ons-speed-dial-item>
-                        <ons-speed-dial-item>
+                        <ons-speed-dial-item class="btn">
                             <ons-icon id="galleryPhoto" icon="ion-images" size="32px"></ons-icon>
                         </ons-speed-dial-item>
                     </ons-speed-dial>
@@ -176,7 +186,7 @@
                 <div class="topBarContents">Quipa</div>
             </ons-toolbar>
             <div class="searching">
-               I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /><br />
+               <div id="searchText">I am searching for <input id="hours" style="font-size:x-large;" type="number" /> hours of work on <input style="font-size:medium;" id="workDate" type="date" /></div><br />
 
                     <div id="myDropdown" class="dropdown-content">
                         <form>
@@ -187,7 +197,7 @@
                             <input type="radio" name="skill" value="locksmith"><ons-icon icon="ion-key" size="40px" style="padding-right:.5em;"></ons-icon>
                             <ons-button class="btn">Search!</ons-button>
                         </form>
-                
+
             </div>
                 </div>
         <div id="searchLocation"></div>
@@ -212,6 +222,205 @@
             </ons-page>
         </ons-template>
 
+        <!---PINKY------->
+        <ons-template id="profileHire.html">
+            <ons-page id="profileHire">
+                <ons-toolbar>
+                    <!--NAV BAR-->
+                    <div class="left"><ons-back-button>Back</ons-back-button></div>
+                    <div class="center">Profile</div>
+                </ons-toolbar>
+                    <!--end NAV BAR-->
+                <ons-card>
+                    <p style="text-align:center">
+                        <img id="profileImage" src="images/profile-pic-dummy.jpg"/>
+                    </p>
+                    <div style="margin:auto" id="star"></div>
+                    <p id="numReviews" style="text-align:center"></p>
+                    <p id="profileName" style="text-align:center;font-size:30px;font-weight:bold;"></p>
+                    <p style="text-align:center;">
+                    <div id="profileDescription" style="width:98%;padding:1%;border:1px SOLID lightgrey;color:black;border-radius:5px;min-height:50px;font-size:20px;margin-bottom:20px;"></div>
+                    <div id="thumbs"></div>
+                    <hr/>
+
+                    <div style="float:left;width:50%;">
+                        <div style="float:left;line-height: 30px;font-size:20px;"><span style="font-weight:bold;" id="hourlyRate">$65</span> per hour</div>
+                        <br clear="all"/>
+                        <span>Needs confirmation</span>
+                    </div>
+                    <div style="float:right;">
+                        <ons-button onclick="profileToSend();">Hire</ons-button>
+                    </div>
+                    <br clear="all"/>
+                </ons-card>
+            </ons-page>
+        </ons-template>
+
+        <!---PINKY------->
+            <!---PINKY------->
+            <ons-template id="profileSend.html">
+                <ons-page id="profileSend">
+                    <ons-toolbar class="topBar">
+                        <div class="left"><ons-back-button>Back</ons-back-button></div>
+                        <div class="center">Review Your Request</div>
+                    </ons-toolbar>
+                    <ons-card>
+                        <div class="title">Kelly Blackwell</div>
+                        <div class="content">
+                            <ons-list>
+                                <ons-list-item>
+                                    <div class="center">
+                                        <div style="width:100%;">
+                                            <img src="http://placekitten.com/g/30/30" style="float:left;">
+                                            <span style="float:left;margin-left:20px;line-height: 30px;font-size:18px;font-weight:bold;">for 2 hours</span>
+                                        </div>
+                                        <div  style="width:100%;height:40px;">
+                                            <span style="float:left;font-size:20px;line-height: 40px;">on </span>
+                                            <span style="float:right;padding-right:20px;font-size:18px;line-height: 40px;font-weight:bold;">10-19-2017</span>
+                                        </div>
+                                        <br/>
+                                        <br/>
+
+                                        <div  style="width:100%;height:30px;">
+                                            <span style="float:left;font-size:20px;line-height: 30px;">from</span>
+
+                                            <input type="time" class="text-input" id="fromTime" style="float:right;font-weight:bold;font-size:18px;"/>
+
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <div  style="width:100%;height:30px;">
+                                            <span style="float:left;font-size:20px;line-height: 30px;">to</span>
+
+                                            <input type="time" class="text-input" id="toTime" style="float:right;font-weight:bold;font-size:18px;"/>
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <img src="http://placekitten.com/g/150/150">
+                                    </div>
+                                </ons-list-item>
+                            </ons-list>
+                        </div>
+                    </ons-card>
+                    <ons-card>
+                        <div class="title">Message for Kelly Blackwell</div>
+                        <div class="content">Hello, I need a mechanic who knows how to fix an old Harvey</div>
+                    </ons-card>
+                    <ons-card>
+                        <div class="title">Price Breakdown</div>
+                        <div class="content">
+                            <ons-list>
+                                <ons-list-item>
+                                    <div class="center">
+                                        <div style="width:90%;">
+                                            <span style="float:left;margin-left:20px;line-height: 30px;font-size:20px;">$25 X 2</span>
+                                            <span style="float:right;margin-left:20px;line-height: 30px;font-size:20px;">$50.0</span>
+                                        </div>
+                                        <div style="width:90%;">
+                                            <span style="float:left;margin-left:20px;line-height: 30px;font-size:20px;">Taxes</span>
+                                            <span style="float:right;margin-left:20px;line-height: 30px;font-size:20px;">$10.0</span>
+                                        </div>
+                                        <div style="width:90%;">
+                                            <span style="float:left;margin-left:20px;line-height: 30px;font-size:20px;">Transportation</span>
+                                            <span style="float:right;margin-left:20px;line-height: 30px;font-size:20px;">$5.0</span>
+                                        </div>
+
+                                        <div style="width:90%;">
+                                            <hr>
+                                        </div>
+                                        <div style="width:90%;">
+                                            <span style="float:left;margin-left:20px;line-height: 30px;font-size:20px;">Total</span>
+                                            <span style="float:right;margin-left:20px;line-height: 30px;font-weight:bold;font-size:20px;">$65.0</span>
+                                        </div>
+                                    </div>
+                                </ons-list-item>
+                            </ons-list>
+                        </div>
+                    </ons-card>
+                    <ons-card>
+                        <div class="content">
+                            <div style="float:left;width:50%;">
+                                <div style="float:left;line-height: 30px;font-size:20px;"><span style="font-weight:bold;">$65</span> for 2 hours </div>
+                                <br clear="all"/>
+                                <span>Needs confirmation</span>
+                            </div>
+                            <div style="float:right;">
+                                <ons-button onclick="confirmProfile();">Send</ons-button>
+                            </div>
+                            <br clear="all"/>
+                        </div>
+                    </ons-card>
+                </ons-page>
+            </ons-template>
+
+            <template id="tabbar.html">
+                <ons-page id="tabbar-page">
+                    <ons-tabbar id="appTabbar" position="auto">
+                        <ons-tab label="Search" icon="ion-ios-search" page="peopleMap.html" ></ons-tab>
+                        <ons-tab label="Favorites" icon="ion-ios-heart-outline" page="favorites.html"></ons-tab>
+                        <ons-tab label="Hired" icon="ion-card" page="hired.html" active></ons-tab>
+                        <ons-tab label="Inbox" icon="ion-email" page="inbox.html"></ons-tab>
+                        <ons-tab label="Profile" icon="ion-ios-person-outline" page="profile.html"></ons-tab>
+                    </ons-tabbar>
+
+                    <script>
+                    ons.getScriptPage().addEventListener('prechange', function(event) {
+                                                         if (event.target.matches('#appTabbar')) {
+                                                         event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+                                                         }
+                                                         });
+                    </script>
+                </ons-page>
+            </template>
+
+            <template id="search.html">
+                <ons-page>
+                </ons-page>
+            </template>
+
+            <template id="favorites.html">
+                <ons-page id="forms-page">
+                </ons-page>
+            </template>
+            <template id="hired.html">
+                <ons-page id="requestHired">
+                    <ons-toolbar class="topBar">
+                        <div class="center">My Requests</div>
+                    </ons-toolbar>
+
+                    <ons-card>
+                        <div class="title"></div>
+                        <div class="content" >
+                            <ons-list id="myrequestContent">
+                            </ons-list>
+                        </div>
+                    </ons-card>
+
+                </ons-page>
+            </template>
+            <template id="inbox.html">
+                <ons-page>
+                </ons-page>
+            </template>
+            <template id="profile.html">
+                <ons-page>
+                </ons-page>
+            </template>
+
+            <ons-template id="profileConfirm.html">
+                <ons-page id="profileConfirm">
+                </ons-page>
+            </ons-template>
+
+            <ons-modal direction="up">
+                <div style="text-align: center">
+                    <p>
+                    <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Loading...
+                    </p>
+                </div>
+            </ons-modal>
+            <!---PINKY------->
+
         <!--SCRIPTS-->
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
@@ -219,7 +428,9 @@
         <script src="scripts/plugins.js"></script>
         <script type="text/javascript" src="scripts/indexeddb-script.js"></script>
         <script type="text/javascript" src="scripts/index.js"></script>
-
-
-    </body>
+        <!---PINKY------->
+        <script type="text/javascript" charset="utf-8" src="scripts/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="scripts/jquery.raty.js"></script>
+        <!---PINKY------->
+        </body>
     </html>
