@@ -38,9 +38,46 @@ var skillObj = {
 
 function verifyLogin(){
     var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
+    var password = document.getElementById('passwordLogin').value;
     console.log(username +' attempting to login');
-    document.querySelector('#Navigator').pushPage('tabbar.html', { data: { title: 'My Requests' } });
+    var modal = document.querySelector('ons-modal');
+    modal.show();
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profileLogin?mobilePhoneNumber=" + username + "&password=" + password);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.onload = function () {
+     try {
+         if (this.status === 200) {
+            var data = JSON.parse(this.response);
+            console.log(data);
+            if(data === ''){
+             alert("Wrong Password or Phone Number");
+            }else{
+                document.getElementById('profileId').value = data['profileId'];
+            document.querySelector('#Navigator').pushPage('tabbar.html', { data: { title: 'My Requests' } });
+               
+            }
+            var modal = document.querySelector('ons-modal');
+            modal.hide();
+        } else {
+         console.log(this.status + " " + this.statusText);
+         var modal = document.querySelector('ons-modal');
+            modal.hide();
+            alert("Wrong Password or Phone Number");
+     }
+ } catch (e) {
+     console.log(e.message);
+     var modal = document.querySelector('ons-modal');
+            modal.hide();
+ }
+};
+
+xhr.onerror = function () {
+ console.log(this.status + " " + this.statusText);
+};
+
+xhr.send();
+
 }
 function loadProfileCreated(){
     console.log('test');
@@ -51,8 +88,8 @@ function loadProfileCreated(){
     xhr.open("GET", "http://18.220.231.8:8080/QuipaServer/services/profileservice/profile/"+profileId);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.onload = function () {
-       try {
-           if (this.status === 200) {
+     try {
+         if (this.status === 200) {
             var data = JSON.parse(this.response);
             console.log(data);
             document.getElementById('previewName').innerHTML=data['name'];
@@ -72,15 +109,19 @@ function loadProfileCreated(){
             var modal = document.querySelector('ons-modal');
             modal.hide();
         } else {
-           console.log(this.status + " " + this.statusText);
-       }
-   } catch (e) {
-       console.log(e.message);
-   }
+         console.log(this.status + " " + this.statusText);
+         var modal = document.querySelector('ons-modal');
+            modal.hide();
+     }
+ } catch (e) {
+     console.log(e.message);
+     var modal = document.querySelector('ons-modal');
+            modal.hide();
+ }
 };
 
 xhr.onerror = function () {
-   console.log(this.status + " " + this.statusText);
+ console.log(this.status + " " + this.statusText);
 };
 
 xhr.send();
