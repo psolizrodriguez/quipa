@@ -170,7 +170,7 @@ document.addEventListener('init', function (event) {
                     var newContent = [];
                     for (var i = 0; i < data.length; i++) {
                         var record = data[i];
-                        if (record['profileId'] === 30) {
+                        if (record['profileId'] >= 27 && record['profileId'] <= 30) {
                             newContent.push(record['latitude']);
                             newContent.push(record['latitude']);
                             newContent.push(record['name'] + ', ' + record['description'] + ' Charges $' + record['priceHour'] + ' per hour');
@@ -196,17 +196,18 @@ document.addEventListener('init', function (event) {
 
 
         
-        var dummylatlng = [[41.867510, -87.621478, "John Doe, $15/hr", 5, 'https://i.imgur.com/uqvXllH.png'], [41.862603, -87.614828, "Taro Tanaka, $17/hr", 6, 'https://i.imgur.com/KrIHCD2.png']];
+        //var dummylatlng = [[41.867510, -87.621478, "John Doe, $15/hr", 5, 'https://i.imgur.com/uqvXllH.png'], [41.862603, -87.614828, "Taro Tanaka, $17/hr", 6, 'https://i.imgur.com/KrIHCD2.png']];
         //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
         //lat, long, prospect info, userid, profilepic
-        for (i = 0; i < dummylatlng.length; i++){
-            for (k = 0; k < dummylatlng[i].length; k++){
+        //NEW CONTENT IS NOT DEFINED
+        for (i = 0; i < newContent.length; i++){
+            for (k = 0; k < newContent[i].length; k++){
                 var infowindow = new google.maps.InfoWindow;
-                var d_latlng = { lat: parseFloat(dummylatlng[i][0]), lng: parseFloat(dummylatlng[i][1]) };
-                var prospect = dummylatlng[i][2];
-                var userId = dummylatlng[i][3];
-                var profilePic = dummylatlng[i][4];
+                var d_latlng = { lat: parseFloat(newContent[i][0]), lng: parseFloat(newContent[i][1]) };
+                var prospect = newContent[i][2];
+                var userId = newContent[i][3];
+                var profilePic = newContent[i][4];
                 map.setZoom(13);
                 var marker = new google.maps.Marker({
                     position: d_latlng,
